@@ -8,7 +8,6 @@
  * @package  Kolab_Storage
  * @author   Gunnar Wrobel <wrobel@pardus.de>
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
- * @link     http://pear.horde.org/index.php?package=Kolab_Storage
  */
 
 /**
@@ -23,7 +22,6 @@
  * @package  Kolab_Storage
  * @author   Gunnar Wrobel <wrobel@pardus.de>
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
- * @link     http://pear.horde.org/index.php?package=Kolab_Storage
  */
 class Horde_Kolab_Storage_Data_Decorator_Log
 implements Horde_Kolab_Storage_Data, Horde_Kolab_Storage_Data_Query

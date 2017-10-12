@@ -10,7 +10,6 @@
  * @author   Thomas Jarosch <thomas.jarosch@intra2net.com>
  * @author   Gunnar Wrobel <wrobel@pardus.de>
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
- * @link     http://pear.horde.org/index.php?package=Kolab_Storage
  */
 
 /**
@@ -21,7 +20,6 @@
  * @author   Thomas Jarosch <thomas.jarosch@intra2net.com>
  * @author   Gunnar Wrobel <wrobel@pardus.de>
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
- * @link     http://pear.horde.org/index.php?package=Kolab_Storage
  */
 class Horde_Kolab_Storage_Cache_Data
 {

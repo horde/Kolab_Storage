@@ -8,7 +8,6 @@
  * @package  Kolab_Storage
  * @author   Michael J Rubinsky <mrubinsk@horde.org>
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
- * @link     http://pear.horde.org/index.php?package=Kolab_Storage
  */
 
 /**
@@ -21,7 +20,6 @@
  * @package  Kolab_Storage
  * @author   Michael J Rubinsky <mrubinsk@horde.org>
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
- * @link     http://pear.horde.org/index.php?package=Kolab_Storage
  */
 interface Horde_Kolab_Storage_HistoryPrefix
 {

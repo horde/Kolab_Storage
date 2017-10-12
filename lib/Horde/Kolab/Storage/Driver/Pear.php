@@ -9,7 +9,6 @@
  * @package  Kolab_Storage
  * @author   Gunnar Wrobel <wrobel@pardus.de>
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
- * @link     http://pear.horde.org/index.php?package=Kolab_Storage
  * @deprecated This class is not maintained and will be removed in future
  *             releases.
  */
@@ -21,7 +20,6 @@
  * @package  Kolab_Storage
  * @author   Gunnar Wrobel <wrobel@pardus.de>
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
- * @link     http://pear.horde.org/index.php?package=Kolab_Storage
  */
 class Horde_Kolab_Storage_Driver_Pear
 extends Horde_Kolab_Storage_Driver_Base
