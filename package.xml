@@ -44,7 +44,7 @@
         <file name="Trigger.php" role="doc" />
        </dir> <!-- /doc/Horde/Kolab/Storage/OLD -->
        <file name="API.txt" role="doc" />
-       <file name="TODO" role="doc" />
+       <file name="TODO.rst" role="doc" />
        <file name="usage.txt" role="doc" />
       </dir> <!-- /doc/Horde/Kolab/Storage -->
      </dir> <!-- /doc/Horde/Kolab -->
@@ -739,7 +739,7 @@
    <install as="examples/list.php" name="doc/Horde/Kolab/Storage/examples/list.php" />
    <install as="OLD/Folder.php" name="doc/Horde/Kolab/Storage/OLD/Folder.php" />
    <install as="OLD/Trigger.php" name="doc/Horde/Kolab/Storage/OLD/Trigger.php" />
-   <install as="TODO" name="doc/Horde/Kolab/Storage/TODO" />
+   <install as="TODO.rst" name="doc/Horde/Kolab/Storage/TODO.rst" />
    <install as="usage.txt" name="doc/Horde/Kolab/Storage/usage.txt" />
    <install as="Horde/Kolab/Storage.php" name="lib/Horde/Kolab/Storage.php" />
    <install as="Horde/Kolab/Storage/Base.php" name="lib/Horde/Kolab/Storage/Base.php" />
