@@ -17,7 +17,7 @@
   <email>mrubinsk@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2017-10-17</date>
+ <date>2017-10-20</date>
  <version>
   <release>2.2.4</release>
   <api>2.2.0</api>
@@ -214,9 +214,7 @@
        </file>
        <file name="Uncached.php" role="php" />
       </dir> <!-- /lib/Horde/Kolab/Storage -->
-      <file name="Storage.php" role="php">
-       <tasks:replace from="@version@" to="version" type="package-info" />
-      </file>
+      <file name="Storage.php" role="php" />
      </dir> <!-- /lib/Horde/Kolab -->
     </dir> <!-- /lib/Horde -->
    </dir> <!-- /lib -->
@@ -627,7 +625,6 @@
        <file name="AttachmentTest.php" role="test" />
        <file name="Autoload.php" role="test" />
        <file name="bootstrap.php" role="test" />
-       <file name="phpunit.xml" role="test" />
        <file name="Scenario.php" role="test" />
        <file name="TestCase.php" role="test" />
       </dir> <!-- /test/Horde/Kolab/Storage -->
@@ -943,7 +940,6 @@
    <install as="Horde/Kolab/Storage/fixtures/note2.eml" name="test/Horde/Kolab/Storage/fixtures/note2.eml" />
    <install as="Horde/Kolab/Storage/fixtures/preferences.1" name="test/Horde/Kolab/Storage/fixtures/preferences.1" />
    <install as="Horde/Kolab/Storage/fixtures/preferences.2" name="test/Horde/Kolab/Storage/fixtures/preferences.2" />
-   <install as="Horde/Kolab/Storage/phpunit.xml" name="test/Horde/Kolab/Storage/phpunit.xml" />
    <install as="Horde/Kolab/Storage/Scenario.php" name="test/Horde/Kolab/Storage/Scenario.php" />
    <install as="Horde/Kolab/Storage/Server/DriverTest.php" name="test/Horde/Kolab/Storage/Server/DriverTest.php" />
    <install as="Horde/Kolab/Storage/Stub/DataQuery.php" name="test/Horde/Kolab/Storage/Stub/DataQuery.php" />
@@ -1462,7 +1458,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-10-17</date>
+   <date>2017-10-20</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
