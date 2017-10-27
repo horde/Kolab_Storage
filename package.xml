@@ -28,7 +28,6 @@
  </stability>
  <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
  <notes>
-* 
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -1025,14 +1024,12 @@
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * Fixed the Kolab_Storage::getFolder() function.
-  * Added Kolab_List::getForeignDefault() to retrieve the default folders of other
-    users. Also fixes issues with overlapping default folders.
-  * Fixed retrieval of general Kolab annotations.
-  * Correctly determine the owner of the INBOX of another user.
-  * Automatically trigger a folder within the folder handler.
-  * Moved Kolab session handler from Kolab_Storage to Kolab_Server.
-  * Moved the IMAP drivers from Kolab_Storage to Kolab_Server as the
-    IMAP connection must be handled by the Kolab session.
+* Added Kolab_List::getForeignDefault() to retrieve the default folders of other users. Also fixes issues with overlapping default folders.
+* Fixed retrieval of general Kolab annotations.
+* Correctly determine the owner of the INBOX of another user.
+* Automatically trigger a folder within the folder handler.
+* Moved Kolab session handler from Kolab_Storage to Kolab_Server.
+* Moved the IMAP drivers from Kolab_Storage to Kolab_Server as the IMAP connection must be handled by the Kolab session.
    </notes>
   </release>
   <release>
@@ -1051,8 +1048,7 @@
 * Fixed triggering folders.
 * Fixed renaming default folders.
 * Implemented extended free/busy access concept.
-* kolab/issue3292 (Sharing default groupware resources does not work
-  in the web client)
+* kolab/issue3292 (Sharing default groupware resources does not work in the web client)
    </notes>
   </release>
   <release>
@@ -1069,8 +1065,7 @@
    <notes>
 * Added namespace support (Bug #6691).
 * Converted the package to Horde 4 / PHP 5.
-* Fixed list driver to prevent overwriting folder data when
-  authenticating twice (relevant for testing).
+* Fixed list driver to prevent overwriting folder data when authenticating twice (relevant for testing).
 * Allow to supress triggering (relevant for testing).
    </notes>
   </release>
@@ -1461,7 +1456,6 @@
    <date>2017-10-20</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
-* 
    </notes>
   </release>
  </changelog>
