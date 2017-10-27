@@ -8,3 +8,46 @@ description: >
   with this type of data storage effectively.
 list: dev
 type: library
+homepage: https://www.horde.org/libraries/Horde_Kolab_Storage
+authors:
+  -
+    name: Gunnar Wrobel
+    user: wrobel
+    email: p@rdus.de
+    active: true
+    role: lead
+  -
+    name: Michael J Rubinsky
+    user: mrubinsk
+    email: mrubinsk@horde.org
+    active: true
+    role: lead
+version:
+  release: 2.2.4
+  api: 2.2.0
+state:
+  release: stable
+  api: stable
+license:
+  identifier: LGPL-2.1
+  uri: http://www.horde.org/licenses/lgpl21
+dependencies:
+  required:
+    php: ^5.3 || ^7
+    pear:
+      pear.horde.org/Horde_Cache: ^2
+      pear.horde.org/Horde_Exception: ^2
+      pear.horde.org/Horde_Kolab_Format: ^2
+      pear.horde.org/Horde_Mime: ^2
+      pear.horde.org/Horde_Translation: ^2.2
+      pear.horde.org/Horde_Support: ^2
+      pear.horde.org/Horde_Util: ^2
+  optional:
+    pear:
+      pear.horde.org/Horde_Imap_Client: ^2.14
+      pear.horde.org/Horde_History: ^2
+      pear.horde.org/Horde_Test: ^2.1
+      pear.php.net/HTTP_Request: '*'
+      pear.php.net/Net_IMAP: ^1.1
+    ext:
+      imap: '*'
