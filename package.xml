@@ -17,7 +17,7 @@
   <email>mrubinsk@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2016-12-16</date>
+ <date>2017-10-30</date>
  <version>
   <release>2.2.4</release>
   <api>2.2.0</api>
@@ -44,6 +44,7 @@
         <file name="Trigger.php" role="doc" />
        </dir> <!-- /doc/Horde/Kolab/Storage/OLD -->
        <file name="API.txt" role="doc" />
+       <file name="CHANGES" role="doc" />
        <file name="COPYING" role="doc" />
        <file name="TODO" role="doc" />
        <file name="usage.txt" role="doc" />
@@ -736,6 +737,7 @@
  <phprelease>
   <filelist>
    <install as="API.txt" name="doc/Horde/Kolab/Storage/API.txt" />
+   <install as="CHANGES" name="doc/Horde/Kolab/Storage/CHANGES" />
    <install as="COPYING" name="doc/Horde/Kolab/Storage/COPYING" />
    <install as="TODO" name="doc/Horde/Kolab/Storage/TODO" />
    <install as="usage.txt" name="doc/Horde/Kolab/Storage/usage.txt" />
@@ -1458,7 +1460,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2016-12-16</date>
+   <date>2017-10-30</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
