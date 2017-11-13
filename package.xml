@@ -3,7 +3,7 @@
  <name>Horde_Kolab_Storage</name>
  <channel>pear.horde.org</channel>
  <extends>Kolab_Storage</extends>
- <summary>A package for handling Kolab data stored on an IMAP server</summary>
+ <summary>Kolab data storage library</summary>
  <description>Storing user data in an IMAP account belonging to the user is one of the Kolab server core concepts. This package provides all the necessary means to deal with this type of data storage effectively.</description>
  <lead>
   <name>Gunnar Wrobel</name>
@@ -17,7 +17,7 @@
   <email>mrubinsk@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2017-10-27</date>
+ <date>2017-11-11</date>
  <version>
   <release>2.2.4</release>
   <api>2.2.0</api>
@@ -725,6 +725,8 @@
     <name>Net_IMAP</name>
     <channel>pear.php.net</channel>
     <min>1.1.0</min>
+    <max>2.0.0alpha1</max>
+    <exclude>2.0.0alpha1</exclude>
    </package>
    <extension>
     <name>imap</name>
@@ -1456,7 +1458,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-10-27</date>
+   <date>2017-11-11</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
