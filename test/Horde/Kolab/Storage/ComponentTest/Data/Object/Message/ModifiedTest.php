@@ -75,12 +75,12 @@ extends PHPUnit_Framework_TestCase
             ),
             $result
         );
-        $this->assertEquals(
+        $this->assertStringMatchesFormat(
             'From: user
 To: user
-Date: 
+Date:
 Subject: ABC1234
-User-Agent: Horde::Kolab::Storage v@version@
+User-Agent: Horde::Kolab::Storage v%s
 MIME-Version: 1.0
 X-Kolab-Type: application/x-vnd.kolab.note
 Content-Type: multipart/mixed; boundary="";
@@ -108,7 +108,7 @@ Content-Disposition: inline; x-kolab-type=xml; filename=kolab.xml
   <creation-date></creation-date>
   <last-modification-date></last-modification-date>
   <sensitivity>public</sensitivity>
-  <product-id>Horde_Kolab_Format_Xml-@version@ (api version: 2)</product-id>
+  <product-id>Horde_Kolab_Format_Xml-%s (api version: 2)</product-id>
   <summary>NEW</summary>
   <x-test>other client</x-test>
   <background-color>#000000</background-color>
