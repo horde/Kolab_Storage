@@ -6,18 +6,18 @@
  <summary>Kolab data storage library</summary>
  <description>Storing user data in an IMAP account belonging to the user is one of the Kolab server core concepts. This package provides all the necessary means to deal with this type of data storage effectively.</description>
  <lead>
-  <name>Gunnar Wrobel</name>
-  <user>wrobel</user>
-  <email>p@rdus.de</email>
-  <active>yes</active>
- </lead>
- <lead>
   <name>Michael J Rubinsky</name>
   <user>mrubinsk</user>
   <email>mrubinsk@horde.org</email>
   <active>yes</active>
  </lead>
- <date>2017-11-11</date>
+ <lead>
+  <name>Gunnar Wrobel</name>
+  <user>wrobel</user>
+  <email>p@rdus.de</email>
+  <active>no</active>
+ </lead>
+ <date>2017-11-14</date>
  <version>
   <release>2.2.4</release>
   <api>2.2.0</api>
@@ -1458,7 +1458,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-11-11</date>
+   <date>2017-11-14</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
