@@ -78,7 +78,7 @@ extends PHPUnit_Framework_TestCase
         $this->assertStringMatchesFormat(
             'From: user
 To: user
-Date:
+Date: 
 Subject: ABC1234
 User-Agent: Horde::Kolab::Storage v%s
 MIME-Version: 1.0
