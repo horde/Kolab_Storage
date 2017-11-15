@@ -77,9 +77,9 @@ extends PHPUnit_Framework_TestCase
         $this->assertStringMatchesFormat(
             'From: user
 To: user
-Date:
+Date: 
 Subject: ABC1234
-User-Agent: Horde_Kolab_Storage v%s
+User-Agent: Horde_Kolab_Storage %s
 MIME-Version: 1.0
 X-Kolab-Type: application/x-vnd.kolab.note
 Content-Type: multipart/mixed; name="Kolab Groupware Data";
