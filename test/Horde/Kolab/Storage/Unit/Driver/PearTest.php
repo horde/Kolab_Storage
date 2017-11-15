@@ -30,6 +30,7 @@ extends PHPUnit_Framework_TestCase
 {
     public function testGetNamespaceReturnsNamespaceHandler()
     {
+        error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
         $driver = new Horde_Kolab_Storage_Driver_Pear(
             new Horde_Kolab_Storage_Factory(),
             array('backend' => $this->_getNamespaceMock())
@@ -42,6 +43,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testGetNamespaceReturnsExpectedNamespaces()
     {
+        error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
         $driver = new Horde_Kolab_Storage_Driver_Pear(
             new Horde_Kolab_Storage_Factory(),
             array('backend' => $this->_getNamespaceMock())
