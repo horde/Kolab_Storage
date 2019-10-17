@@ -78,9 +78,9 @@ extends Horde_Kolab_Storage_Folder_Namespace_Element
         } else {
             $local = $owner;
         }
-        $start = join(
-            array($this->_name, $local, $subpath),
-            $this->_delimiter
+        $start = implode(
+            $this->_delimiter,
+            array($this->_name, $local, $subpath)
         );
         if (strstr($this->_user, '@') !== strstr($owner, '@')) {
             return $start . strstr($owner, '@');
