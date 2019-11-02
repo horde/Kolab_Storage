@@ -137,7 +137,7 @@ abstract class Horde_Kolab_Storage_Folder_Namespace_Element
      */
     public function getSubpath($name)
     {
-        return join($this->_subpath($name), $this->_delimiter);
+        return implode($this->_delimiter, $this->_subpath($name));
     }
 
     /**
@@ -151,7 +151,7 @@ abstract class Horde_Kolab_Storage_Folder_Namespace_Element
     {
         $path = explode($this->_delimiter, $name);
         array_pop($path);
-        return join($path, $this->_delimiter);
+        return implode($this->_delimiter, $path);
     }
 
     /**
