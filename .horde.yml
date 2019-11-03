@@ -2,8 +2,7 @@
 id: Kolab_Storage
 name: Kolab_Storage
 full: Kolab data storage library
-description: >-
-  A library that deals with Kolab data storage effectively.
+description: A library that deals with Kolab data storage effectively.
 list: dev
 type: library
 homepage: https://www.horde.org/libraries/Horde_Kolab_Storage

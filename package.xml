@@ -4,7 +4,7 @@
  <channel>pear.horde.org</channel>
  <extends>Kolab_Storage</extends>
  <summary>Kolab data storage library</summary>
- <description>Storing user data in an IMAP account belonging to the user is one of the Kolab server core concepts. This package provides all the necessary means to deal with this type of data storage effectively.</description>
+ <description>A library that deals with Kolab data storage effectively.</description>
  <lead>
   <name>Michael J Rubinsky</name>
   <user>mrubinsk</user>
@@ -17,7 +17,7 @@
   <email>p@rdus.de</email>
   <active>no</active>
  </lead>
- <date>2017-11-14</date>
+ <date>2019-11-03</date>
  <version>
   <release>2.2.4</release>
   <api>2.2.0</api>
@@ -1504,7 +1504,7 @@
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2017-10-20</date>
+   <date>2019-11-03</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * [mjr] PHP 7.4 compatibility fixes (Remi Collet &lt;remi@famillecollet.com&gt;, PR #1).
