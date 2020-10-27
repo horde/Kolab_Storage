@@ -1,7 +1,7 @@
 {
-    "name": "horde/kolab-storage",
+    "name": "horde/kolab_storage",
     "description": "Kolab data storage library",
-    "type": "library",
+    "type": "horde-library",
     "homepage": "https://www.horde.org/libraries/Horde_Kolab_Storage",
     "license": "LGPL-2.1",
     "authors": [
@@ -17,34 +17,35 @@
         }
     ],
     "version": "2.2.4",
-    "time": "2017-11-14",
+    "time": "2020-10-27",
     "repositories": [
         {
-            "type": "pear",
-            "url": "https://pear.horde.org"
+            "type": "composer",
+            "url": "https://horde-satis.maintaina.com"
+        },
+        {
+            "url": "https://pear.php.net",
+            "type": "pear"
         }
     ],
     "require": {
+        "horde/horde-installer-plugin": "dev-master",
         "php": "^5.3 || ^7",
-        "pear-pear.horde.org/Horde_Cache": "^2",
-        "pear-pear.horde.org/Horde_Exception": "^2",
-        "pear-pear.horde.org/Horde_Kolab_Format": "^2",
-        "pear-pear.horde.org/Horde_Mime": "^2",
-        "pear-pear.horde.org/Horde_Translation": "^2.2",
-        "pear-pear.horde.org/Horde_Support": "^2",
-        "pear-pear.horde.org/Horde_Util": "^2"
+        "horde/cache": "dev-master",
+        "horde/exception": "dev-master",
+        "horde/kolab_format": "dev-master",
+        "horde/mime": "dev-master",
+        "horde/translation": "dev-master",
+        "horde/support": "dev-master",
+        "horde/util": "dev-master"
     },
     "suggest": {
-        "pear-pear.horde.org/Horde_Imap_Client": "^2.14",
-        "pear-pear.horde.org/Horde_History": "^2",
-        "pear-pear.horde.org/Horde_Test": "^2.1",
+        "horde/imap_client": "^2.14",
+        "horde/history": "^2",
+        "horde/test": "^2.1",
         "pear-pear.php.net/HTTP_Request": "*",
         "pear-pear.php.net/Net_IMAP": "^1.1",
         "ext-imap": "*"
-    },
-    "replace": {
-        "pear-pear.horde.org/Horde_Kolab_Storage": "2.*",
-        "pear-horde/Horde_Kolab_Storage": "2.*"
     },
     "autoload": {
         "psr-0": {
