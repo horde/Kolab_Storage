@@ -3,7 +3,7 @@
     "description": "Kolab data storage library",
     "type": "horde-library",
     "homepage": "https://www.horde.org/libraries/Horde_Kolab_Storage",
-    "license": "LGPL-2.1",
+    "license": "LGPL-2.1-only",
     "authors": [
         {
             "name": "Michael J Rubinsky",
@@ -16,35 +16,31 @@
             "role": "lead"
         }
     ],
-    "version": "2.2.4",
+    
     "time": "2020-10-27",
     "repositories": [
         {
             "type": "composer",
             "url": "https://horde-satis.maintaina.com"
-        },
-        {
-            "url": "https://pear.php.net",
-            "type": "pear"
         }
     ],
     "require": {
-        "horde/horde-installer-plugin": "dev-master",
-        "php": "^5.3 || ^7",
-        "horde/cache": "dev-master",
-        "horde/exception": "dev-master",
-        "horde/kolab_format": "dev-master",
-        "horde/mime": "dev-master",
-        "horde/translation": "dev-master",
-        "horde/support": "dev-master",
-        "horde/util": "dev-master"
+        "horde/horde-installer-plugin": "^2 || dev-FRAMEWORK_6_0",
+        "php": "^7.4 || ^8",
+        "horde/cache": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/exception": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/kolab_format": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/mime": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/translation": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/support": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/util": "dev-FRAMEWORK_6_0 || ^3"
     },
     "suggest": {
-        "horde/imap_client": "^2.14",
-        "horde/history": "^2",
-        "horde/test": "^2.1",
-        "pear-pear.php.net/HTTP_Request": "*",
-        "pear-pear.php.net/Net_IMAP": "^1.1",
+        "horde/imap_client": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/history": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/test": "dev-FRAMEWORK_6_0 || ^3",
+        "pear/http_request": "*",
+        "pear/net_imap": "*",
         "ext-imap": "*"
     },
     "autoload": {
