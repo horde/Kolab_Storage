@@ -1,7 +1,7 @@
 {
     "name": "horde/kolab_storage",
     "description": "Kolab data storage library",
-    "type": "horde-library",
+    "type": "library",
     "homepage": "https://www.horde.org/libraries/Horde_Kolab_Storage",
     "license": "LGPL-2.1-only",
     "authors": [
@@ -16,8 +16,7 @@
             "role": "lead"
         }
     ],
-    
-    "time": "2020-10-27",
+    "time": "2022-08-16",
     "repositories": [
         {
             "type": "composer",
@@ -25,20 +24,26 @@
         }
     ],
     "require": {
-        "horde/horde-installer-plugin": "^2 || dev-FRAMEWORK_6_0",
         "php": "^7.4 || ^8",
-        "horde/cache": "dev-FRAMEWORK_6_0 || ^3",
-        "horde/exception": "dev-FRAMEWORK_6_0 || ^3",
-        "horde/kolab_format": "dev-FRAMEWORK_6_0 || ^3",
-        "horde/mime": "dev-FRAMEWORK_6_0 || ^3",
-        "horde/translation": "dev-FRAMEWORK_6_0 || ^3",
-        "horde/support": "dev-FRAMEWORK_6_0 || ^3",
-        "horde/util": "dev-FRAMEWORK_6_0 || ^3"
+        "horde/cache": "^3 || dev-FRAMEWORK_6_0",
+        "horde/exception": "^3 || dev-FRAMEWORK_6_0",
+        "horde/kolab_format": "^3 || dev-FRAMEWORK_6_0",
+        "horde/mime": "dev-FRAMEWORK_6_0",
+        "horde/translation": "^3 || dev-FRAMEWORK_6_0",
+        "horde/support": "dev-FRAMEWORK_6_0",
+        "horde/util": "^3 || dev-FRAMEWORK_6_0",
+        "horde/imap_client": "dev-FRAMEWORK_6_0"
+    },
+    "require-dev": {
+        "horde/log": "dev-FRAMEWORK_6_0",
+        "horde/imap_client": "dev-FRAMEWORK_6_0",
+        "horde/test": "dev-FRAMEWORK_6_0",
+        "horde/history": "dev-FRAMEWORK_6_0",
+        "pear/net_imap": "^1"
     },
     "suggest": {
-        "horde/imap_client": "dev-FRAMEWORK_6_0 || ^3",
-        "horde/history": "dev-FRAMEWORK_6_0 || ^3",
-        "horde/test": "dev-FRAMEWORK_6_0 || ^3",
+        "horde/imap_client": "^3 || dev-FRAMEWORK_6_0",
+        "horde/history": "^3 || dev-FRAMEWORK_6_0",
         "pear/http_request": "*",
         "pear/net_imap": "*",
         "ext-imap": "*"
@@ -47,5 +52,16 @@
         "psr-0": {
             "Horde_Kolab_Storage": "lib/"
         }
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Horde\\Kolab\\Storage\\Test\\": "test/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "horde/horde-installer-plugin": true
+        }
+    },
+    "minimum-stability": "dev"
 }

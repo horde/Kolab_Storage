@@ -44,8 +44,14 @@ dependencies:
     composer:
       horde/imap_client: ^3
       horde/history: ^3
-      horde/test: ^3
       pear/http_request: '*'
       pear/net_imap: *
     ext:
       imap: '*'
+  dev:
+      horde/imap_client: ^3
+      horde/history: ^3
+      pear/http_request: '*'
+      pear/net_imap: ^1
+      horde/test: ^3
+      horde/kolab_format: ^2
