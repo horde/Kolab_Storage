@@ -76,7 +76,7 @@ extends Horde_Kolab_Storage_TestCase
     public function testStamp()
     {
         $this->assertEquals(
-            'C:37:"Horde_Kolab_Storage_Folder_Stamp_Uids":86:{a:2:{i:0;a:2:{s:11:"uidvalidity";s:8:"12346789";s:7:"uidnext";i:5;}i:1;a:1:{i:0;i:4;}}}',
+            'O:37:"Horde_Kolab_Storage_Folder_Stamp_Uids":2:{i:0;a:2:{s:11:"uidvalidity";s:8:"12346789";s:7:"uidnext";i:5;}i:1;a:1:{i:0;i:4;}}',
             serialize(
                 $this->getMessageStorage()
                 ->getData('INBOX/WithDeleted')

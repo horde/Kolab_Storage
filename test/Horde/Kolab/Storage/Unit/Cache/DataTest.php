@@ -204,7 +204,7 @@ extends Horde_Kolab_Storage_TestCase
     public function testGetStampOne()
     {
         $this->assertEquals(
-            'C:37:"Horde_Kolab_Storage_Folder_Stamp_Uids":30:{a:2:{i:0;s:1:"a";i:1;s:1:"b";}}',
+            'O:37:"Horde_Kolab_Storage_Folder_Stamp_Uids":2:{i:0;s:1:"a";i:1;s:1:"b";}',
             $this->_getSyncedCacheWithData()->getStamp()
         );
     }
@@ -212,7 +212,7 @@ extends Horde_Kolab_Storage_TestCase
     public function testGetStampTwo()
     {
         $this->assertEquals(
-            'C:37:"Horde_Kolab_Storage_Folder_Stamp_Uids":30:{a:2:{i:0;s:1:"c";i:1;s:1:"d";}}',
+            'O:37:"Horde_Kolab_Storage_Folder_Stamp_Uids":2:{i:0;s:1:"c";i:1;s:1:"d";}',
             $this->_getSyncedCacheWithMoreData()->getStamp()
         );
     }
