@@ -26,12 +26,12 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Synchronization_BaseTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testSynchronize()
     {
         $synchronization = new Horde_Kolab_Storage_List_Synchronization_Base();
-        $listener = $this->getMock('Horde_Kolab_Storage_List_Synchronization_Listener');
+        $listener = $this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization_Listener')->getMock();
         $listener->expects($this->once())
             ->method('synchronize');
         $synchronization->registerListener($listener);

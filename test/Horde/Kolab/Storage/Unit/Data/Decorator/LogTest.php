@@ -31,7 +31,7 @@ extends Horde_Kolab_Storage_TestCase
     public function testDelete()
     {
         $list = new Horde_Kolab_Storage_Data_Decorator_Log(
-            $this->getMock('Horde_Kolab_Storage_Data'),
+            $this->getMockBuilder('Horde_Kolab_Storage_Data')->getMock(),
             $this->getMockLogger()
         );
         $list->delete('x');

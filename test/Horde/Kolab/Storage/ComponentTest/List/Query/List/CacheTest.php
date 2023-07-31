@@ -32,7 +32,7 @@ extends Horde_Kolab_Storage_TestCase
     {
         $factory = new Horde_Kolab_Storage_Factory();
         $query = $this->getCachedQueryForList($this->getNullMock($factory), $factory);
-        $this->assertInternalType('array', $query->listTypes());
+        $this->assertIsArray($query->listTypes());
     }
 
     public function testTypeReturnsAnnotations()
@@ -56,7 +56,7 @@ extends Horde_Kolab_Storage_TestCase
     {
         $factory = new Horde_Kolab_Storage_Factory();
         $query = $this->getCachedQueryForList($this->getNullMock($factory), $factory);
-        $this->assertInternalType('array', $query->listByType('test'));
+        $this->assertIsArray($query->listByType('test'));
     }
 
     public function testListCalendarsListsCalendars()
@@ -77,8 +77,7 @@ extends Horde_Kolab_Storage_TestCase
     {
         $factory = new Horde_Kolab_Storage_Factory();
         $query = $this->getCachedQueryForList($this->getAnnotatedMock($factory), $factory);
-        $this->assertInternalType(
-            'array',
+        $this->assertIsArray(
             $query->listOwners()
         );
     }
@@ -127,8 +126,7 @@ extends Horde_Kolab_Storage_TestCase
     {
         $factory = new Horde_Kolab_Storage_Factory();
         $query = $this->getCachedQueryForList($this->getAnnotatedMock($factory), $factory);
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $query->getDefault('event')
         );
     }
@@ -181,11 +179,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testBailOnDoubleDefault()
     {
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
         $factory = new Horde_Kolab_Storage_Factory();
         $query = $this->getCachedQueryForList($this->getDoubleEventMock($factory), $factory);
         $query->getDefault('event');
@@ -195,8 +192,7 @@ extends Horde_Kolab_Storage_TestCase
     {
         $factory = new Horde_Kolab_Storage_Factory();
         $query = $this->getCachedQueryForList($this->getEventMock($factory), $factory);
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $query->getForeignDefault('someone@example.com', 'event')
         );
     }
@@ -240,11 +236,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testBailOnDoubleForeignDefault()
     {
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
         $factory = new Horde_Kolab_Storage_Factory();
         $query = $this->getCachedQueryForList($this->getDoubleEventMock($factory), $factory);
         $query->getForeignDefault('someone@example.com', 'event');
@@ -286,7 +281,7 @@ extends Horde_Kolab_Storage_TestCase
     {
         $factory = new Horde_Kolab_Storage_Factory();
         $query = $this->getCachedQueryForList($this->getNullMock($factory), $factory);
-        $this->assertInternalType('array', $query->dataByType('test'));
+        $this->assertIsArray($query->dataByType('test'));
     }
 
     public function testListCalendarsListsCalendarData()
@@ -325,19 +320,18 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testMissingFolderData()
     {
-        $this->assertInternalType('array', $this->getNullQuery()->folderData('INBOX/Calendar'));
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
+        $this->assertIsArray($this->getNullQuery()->folderData('INBOX/Calendar'));
     }
 
     public function testFolderDataReturnsArray()
     {
         $factory = new Horde_Kolab_Storage_Factory();
         $data = $this->getCachedQueryForList($this->getAnnotatedMock($factory), $factory)->folderData('INBOX/Calendar');
-        $this->assertInternalType('array', $data);
+        $this->assertIsArray($data);
     }
 
     public function testFolderDataHasOwner()

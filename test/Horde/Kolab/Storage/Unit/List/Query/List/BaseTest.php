@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Query_List_BaseTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testListTypes()
     {
@@ -82,8 +82,8 @@ extends PHPUnit_Framework_TestCase
         $this->mock_type->expects($this->once())
             ->method('isDefault')
             ->will($this->returnValue(true));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $namespace->expects($this->once())
             ->method('getOwner')
             ->with('INBOX/Test')
@@ -155,8 +155,8 @@ extends PHPUnit_Framework_TestCase
         $this->mock_type->expects($this->once())
             ->method('isDefault')
             ->will($this->returnValue(true));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $namespace->expects($this->once())
             ->method('getOwner')
             ->with('INBOX/Test')
@@ -226,8 +226,8 @@ extends PHPUnit_Framework_TestCase
         $this->mock_type->expects($this->once())
             ->method('isDefault')
             ->will($this->returnValue(false));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $namespace->expects($this->once())
             ->method('getOwner')
             ->with('INBOX/Test')
@@ -277,11 +277,10 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testMissingFolderData()
     {
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
         $list = $this->_getList();
         $this->driver->expects($this->once())
             ->method('listFolders')
@@ -295,7 +294,7 @@ extends PHPUnit_Framework_TestCase
         $this->driver->expects($this->once())
             ->method('listFolders')
             ->will($this->returnValue(array('INBOX/Test')));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $namespace->expects($this->once())
             ->method('getOwner')
             ->with('INBOX/Test')
@@ -326,8 +325,8 @@ extends PHPUnit_Framework_TestCase
         $this->mock_type->expects($this->once())
             ->method('isDefault')
             ->will($this->returnValue(true));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $ns->expects($this->once())
             ->method('getType')
             ->will($this->returnValue(Horde_Kolab_Storage_Folder_Namespace::PERSONAL));
@@ -374,11 +373,10 @@ extends PHPUnit_Framework_TestCase
         $list->setDefault('INBOX/Foo');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testSetDefaultFailsWithoutPreviousType()
     {
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
         $list = $this->_getList();
 
         $this->driver->expects($this->once())
@@ -398,7 +396,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testSetDefaultResetPreviousDefault()
     {
-        $this->driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $this->driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $this->types = new Horde_Kolab_Storage_Folder_Types();
         $list = new Horde_Kolab_Storage_List_Query_List_Base(
             $this->driver,
@@ -432,8 +430,8 @@ extends PHPUnit_Framework_TestCase
                 )
             );
 
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $ns->expects($this->once())
             ->method('getType')
             ->will($this->returnValue(Horde_Kolab_Storage_Folder_Namespace::PERSONAL));
@@ -465,11 +463,11 @@ extends PHPUnit_Framework_TestCase
         $this->mock_type->expects($this->once())
             ->method('isDefault')
             ->will($this->returnValue(true));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
         $ns->expects($this->once())
             ->method('getType')
             ->will($this->returnValue(Horde_Kolab_Storage_Folder_Namespace::PERSONAL));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $namespace->expects($this->once())
             ->method('matchNamespace')
             ->with('INBOX/Test')
@@ -504,8 +502,8 @@ extends PHPUnit_Framework_TestCase
         $this->mock_type->expects($this->once())
             ->method('isDefault')
             ->will($this->returnValue(true));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $ns->expects($this->once())
             ->method('getType')
             ->will($this->returnValue(Horde_Kolab_Storage_Folder_Namespace::PERSONAL));
@@ -539,11 +537,11 @@ extends PHPUnit_Framework_TestCase
         $this->mock_type->expects($this->once())
             ->method('isDefault')
             ->will($this->returnValue(true));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
         $ns->expects($this->once())
             ->method('getType')
             ->will($this->returnValue(Horde_Kolab_Storage_Folder_Namespace::PERSONAL));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $namespace->expects($this->once())
             ->method('getOwner')
             ->with('INBOX/Test')
@@ -563,9 +561,9 @@ extends PHPUnit_Framework_TestCase
 
     private function _getList()
     {
-        $this->driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $this->types = $this->getMock('Horde_Kolab_Storage_Folder_Types');
-        $this->mock_type = $this->getMock('Horde_Kolab_Storage_Folder_Type', array(), array('event.default'));
+        $this->driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $this->types = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Types')->getMock();
+        $this->mock_type = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Type')->setConstructorArgs(array('event.default'))->getMock();
         return new Horde_Kolab_Storage_List_Query_List_Base(
             $this->driver,
             $this->types,

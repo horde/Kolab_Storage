@@ -28,7 +28,7 @@
 class Horde_Kolab_Storage_Unit_Driver_Decorator_TimerTest
 extends Horde_Kolab_Storage_TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         if (!class_exists('Horde_Support_Timer')) {
@@ -106,7 +106,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testCreateLogsEntry()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('create')
             ->with('a');
@@ -121,7 +121,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testSetAclLogsEntry()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('setAcl')
             ->with('a', 'b', 'c');
@@ -136,7 +136,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testDeleteAclLogsEntry()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('deleteAcl')
             ->with('a', 'b');

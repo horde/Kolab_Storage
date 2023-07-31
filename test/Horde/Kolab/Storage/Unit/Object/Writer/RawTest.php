@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_Object_Writer_RawTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testLoad()
     {
@@ -34,7 +34,7 @@ extends PHPUnit_Framework_TestCase
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data);
         $raw = new Horde_Kolab_Storage_Object_Writer_Raw();
-        $object = $this->getMock('Horde_Kolab_Storage_Object');
+        $object = $this->getMockBuilder('Horde_Kolab_Storage_Object')->getMock();
         $object->expects($this->once())
             ->method('setContent')
             ->with($content);
@@ -47,7 +47,7 @@ extends PHPUnit_Framework_TestCase
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data);
         $raw = new Horde_Kolab_Storage_Object_Writer_Raw();
-        $object = $this->getMock('Horde_Kolab_Storage_Object');
+        $object = $this->getMockBuilder('Horde_Kolab_Storage_Object')->getMock();
         $object->expects($this->once())
             ->method('getContent')
             ->will($this->returnValue($content));

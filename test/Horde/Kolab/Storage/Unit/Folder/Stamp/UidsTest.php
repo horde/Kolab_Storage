@@ -28,7 +28,7 @@
 class Horde_Kolab_Storage_Unit_Folder_Stamp_UidsTest
 extends Horde_Kolab_Storage_TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->status = array('uidvalidity' => '99', 'uidnext' => '5', 'token' => 'somestamp');
@@ -64,12 +64,11 @@ extends Horde_Kolab_Storage_TestCase
         $this->assertTrue($this->_getStamp()->isReset($stamp));
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testInvalidStampTypeForReset()
     {
-        $this->_getStamp()->isReset($this->getMock('Horde_Kolab_Storage_Folder_Stamp'));
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
+        $this->_getStamp()->isReset($this->getMockBuilder('Horde_Kolab_Storage_Folder_Stamp')->getMock());
     }
 
     public function testSerialize()
@@ -157,12 +156,11 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testInvalidStampType()
     {
-        $this->_getStamp()->getChanges($this->getMock('Horde_Kolab_Storage_Folder_Stamp'));
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
+        $this->_getStamp()->getChanges($this->getMockBuilder('Horde_Kolab_Storage_Folder_Stamp')->getMock());
     }
 
     public function testToString()

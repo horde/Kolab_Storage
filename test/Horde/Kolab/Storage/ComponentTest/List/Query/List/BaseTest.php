@@ -30,7 +30,7 @@ extends Horde_Kolab_Storage_TestCase
 {
     public function testByTypeReturnsArray()
     {
-        $this->assertInternalType('array', $this->getNullQuery()->listByType('test'));
+        $this->assertIsArray($this->getNullQuery()->listByType('test'));
     }
 
     public function testListCalendarsListsCalendars()
@@ -51,7 +51,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testTypeReturnsArray()
     {
-        $this->assertInternalType('array', $this->getNullQuery()->listTypes());
+        $this->assertIsArray($this->getNullQuery()->listTypes());
     }
 
     public function testTypeReturnsAnnotations()
@@ -69,8 +69,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testListOwnersReturn()
     {
-        $this->assertInternalType(
-            'array',
+        $this->assertisArray(
             $this->getAnnotatedQuery()->listOwners()
         );
     }
@@ -113,8 +112,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testDefaultReturn()
     {
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $this->getNamespaceQuery()->getDefault('event')
         );
     }
@@ -157,18 +155,16 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testBailOnDoubleDefault()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getDoubleEventQuery()->getDefault('event');
     }
 
     public function testForeignDefaultReturn()
     {
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $this->getEventQuery()->getForeignDefault(
                 'someone@example.com', 'event'
             )
@@ -214,11 +210,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testBailOnDoubleForeignDefault()
     {
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
         $this->getDoubleEventQuery()->getForeignDefault(
             'someone@example.com', 'event'
         );
@@ -254,7 +249,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testDataByTypeReturnsArray()
     {
-        $this->assertInternalType('array', $this->getNullQuery()->dataByType('test'));
+        $this->assertIsArray($this->getNullQuery()->dataByType('test'));
     }
 
     public function testListCalendarsListsCalendarData()
@@ -291,17 +286,16 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testMissingFolderData()
     {
-        $this->assertInternalType('array', $this->getNullQuery()->folderData('INBOX/Calendar'));
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
+        $this->assertIsArray($this->getNullQuery()->folderData('INBOX/Calendar'));
     }
 
     public function testFolderDataReturnsArray()
     {
-        $this->assertInternalType('array', $this->getAnnotatedQuery()->folderData('INBOX/Calendar'));
+        $this->assertIsArray($this->getAnnotatedQuery()->folderData('INBOX/Calendar'));
     }
 
     public function testFolderDataHasOwner()

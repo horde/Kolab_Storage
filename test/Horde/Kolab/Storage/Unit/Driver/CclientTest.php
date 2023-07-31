@@ -26,9 +26,9 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_Driver_CclientTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         if (!function_exists('imap_open')) {

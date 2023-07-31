@@ -26,7 +26,7 @@
 class Horde_Kolab_Storage_Unit_CacheTest
 extends Horde_Kolab_Storage_TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->horde_cache = new Horde_Cache(
@@ -61,11 +61,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testDataMissingHost()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $params = $this->_getDataParameters();
         unset($params['host']);
         $this->cache->getDataCache($params);
@@ -81,11 +80,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testDataMissingPort()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $params = $this->_getDataParameters();
         unset($params['port']);
         $this->cache->getDataCache($params);
@@ -101,11 +99,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testDataMissingFolder()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $params = $this->_getDataParameters();
         unset($params['folder']);
         $this->cache->getDataCache($params);
@@ -121,11 +118,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testDataMissingType()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $params = $this->_getDataParameters();
         unset($params['type']);
         $this->cache->getDataCache($params);
@@ -155,11 +151,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testDataMissingOwner()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $params = $this->_getDataParameters();
         unset($params['owner']);
         $this->cache->getDataCache($params);

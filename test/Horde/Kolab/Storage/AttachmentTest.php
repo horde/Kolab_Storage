@@ -25,14 +25,14 @@
  * @author     Gunnar Wrobel <wrobel@pardus.de>
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
-class Horde_Kolab_Storage_AttachmentTest extends PHPUnit_Framework_TestCase
+class Horde_Kolab_Storage_AttachmentTest extends Horde_Test_Case
 {
     /**
      * Test setup.
      *
      * @return NULL
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestIncomplete('Broken test, prepareBasicSetup() doesn\'t exist');
 
@@ -48,7 +48,7 @@ class Horde_Kolab_Storage_AttachmentTest extends PHPUnit_Framework_TestCase
     /**
      * Test destruction.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($this->storage) {
             $this->storage->clean();

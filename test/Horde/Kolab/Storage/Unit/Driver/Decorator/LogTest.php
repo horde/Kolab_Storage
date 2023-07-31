@@ -92,8 +92,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testCreateFolderLog()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $logger = $this->getMock('Horde_Log_Logger', array('debug'));
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('debug'))->getMock();
         $logger->expects($this->exactly(2))
             ->method('debug')
             ->with(
@@ -108,8 +108,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testDeleteFolderLog()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $logger = $this->getMock('Horde_Log_Logger', array('debug'));
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('debug'))->getMock();
         $logger->expects($this->exactly(2))
             ->method('debug')
             ->with(
@@ -124,8 +124,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testRenameFolderLog()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $logger = $this->getMock('Horde_Log_Logger', array('debug'));
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('debug'))->getMock();
         $logger->expects($this->exactly(2))
             ->method('debug')
             ->with(
@@ -140,40 +140,40 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testCreateFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('create')
             ->with('INBOX/Test');
-        $logger = $this->getMock('Horde_Log_Logger', array('debug'));
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('debug'))->getMock();
         $log = new Horde_Kolab_Storage_Driver_Decorator_Log($driver, $logger);
         $log->create('INBOX/Test');
     }
 
     public function testDeleteFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('delete')
             ->with('INBOX/Test');
-        $logger = $this->getMock('Horde_Log_Logger', array('debug'));
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('debug'))->getMock();
         $log = new Horde_Kolab_Storage_Driver_Decorator_Log($driver, $logger);
         $log->delete('INBOX/Test');
     }
 
     public function testRenameFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('rename')
             ->with('INBOX/Test', 'FOO');
-        $logger = $this->getMock('Horde_Log_Logger', array('debug'));
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('debug'))->getMock();
         $log = new Horde_Kolab_Storage_Driver_Decorator_Log($driver, $logger);
         $log->rename('INBOX/Test', 'FOO');
     }
 
     public function testSetAclLogsEntry()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('setAcl')
             ->with('a', 'b', 'c');
@@ -187,7 +187,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testDeleteAclLogsEntry()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('deleteAcl')
             ->with('a', 'b');

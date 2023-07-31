@@ -27,11 +27,11 @@
 class Horde_Kolab_Storage_Unit_Folder_NamespaceTest
 extends Horde_Kolab_Storage_TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->_storage = $this->getMock('Horde_Kolab_Storage', array(), array(), '', false, false);
-        $this->_connection = $this->getMock('Horde_Kolab_Storage_Driver');
+        $this->_storage = $this->getMockBuilder('Horde_Kolab_Storage')->disableOriginalConstructor()->disableOriginalClone()->getMock();
+        $this->_connection = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
     }
 
     public function testTitleForPersonalNS()

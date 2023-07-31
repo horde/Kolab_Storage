@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_Driver_PearTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testGetNamespaceReturnsNamespaceHandler()
     {
@@ -74,7 +74,7 @@ extends PHPUnit_Framework_TestCase
 
     private function _getNamespaceMock()
     {
-        $imap = $this->getMock('Net_IMAP', array('hasCapability', 'getNameSpace'), array(), '', false, false);
+        $imap = $this->getMockBuilder('Net_IMAP')->setMethods(array('hasCapability', 'getNameSpace'))->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $imap->expects($this->once())
             ->method('hasCapability')
             ->with('NAMESPACE')

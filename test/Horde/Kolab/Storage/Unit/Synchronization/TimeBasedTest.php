@@ -26,76 +26,70 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_Synchronization_TimeBasedTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testSynchronizeListReturn()
     {
+        $_SESSION=array();
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased();
-        $list = $this->getMock(
-            'Horde_Kolab_Storage_List_Tools', array(), array(), '', false, false
-        );
+        $list = $this->getMockBuilder('Horde_Kolab_Storage_List_Tools')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $list->expects($this->once())
             ->method('getListSynchronization')
-            ->will($this->returnValue($this->getMock('Horde_Kolab_Storage_List_Synchronization')));
+            ->will($this->returnValue($this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization')->getMock()));
         $this->assertNull($synchronization->synchronizeList($list));
     }
 
     public function testListSynchronization()
     {
+        $_SESSION=array();
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased();
-        $list = $this->getMock(
-            'Horde_Kolab_Storage_List_Tools', array(), array(), '', false, false
-        );
+        $list = $this->getMockBuilder('Horde_Kolab_Storage_List_Tools')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $list->expects($this->once())
             ->method('getListSynchronization')
-            ->will($this->returnValue($this->getMock('Horde_Kolab_Storage_List_Synchronization')));
+            ->will($this->returnValue($this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization')->getMock()));
         $synchronization->synchronizeList($list);
     }
 
     public function testListSynchronizationInSession()
     {
+        $_SESSION=array();
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased();
-        $list = $this->getMock(
-            'Horde_Kolab_Storage_List_Tools', array(), array(), '', false, false
-        );
+        $list = $this->getMockBuilder('Horde_Kolab_Storage_List_Tools')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $list->expects($this->once())
             ->method('getId')
             ->will($this->returnValue('test'));
         $list->expects($this->once())
             ->method('getListSynchronization')
-            ->will($this->returnValue($this->getMock('Horde_Kolab_Storage_List_Synchronization')));
+            ->will($this->returnValue($this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization')->getMock()));
         $synchronization->synchronizeList($list);
         $this->assertTrue($_SESSION['kolab_storage']['synchronization']['list']['test']);
     }
 
     public function testDuplicateListSynchronization()
     {
+        $_SESSION=array();
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased();
-        $list = $this->getMock(
-            'Horde_Kolab_Storage_List_Tools', array(), array(), '', false, false
-        );
+        $list = $this->getMockBuilder('Horde_Kolab_Storage_List_Tools')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $list->expects($this->once())
             ->method('getListSynchronization')
-            ->will($this->returnValue($this->getMock('Horde_Kolab_Storage_List_Synchronization')));
+            ->will($this->returnValue($this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization')->getMock()));
         $synchronization->synchronizeList($list);
         $synchronization->synchronizeList($list);
     }
 
     public function testSynchronizeDataReturn()
     {
+        $_SESSION=array();
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased();
-        $data = $this->getMock(
-            'Horde_Kolab_Storage_Data_Base', array(), array(), '', false, false
-        );
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Data_Base')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $this->assertNull($synchronization->synchronizeData($data));
     }
 
     public function testDataSynchronization()
     {
+        $_SESSION=array();
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased();
-        $data = $this->getMock(
-            'Horde_Kolab_Storage_Data_Base', array(), array(), '', false, false
-        );
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Data_Base')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $data->expects($this->once())
             ->method('synchronize');
         $synchronization->synchronizeData($data);
@@ -103,10 +97,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testDataSynchronizationInSession()
     {
+        $_SESSION=array();
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased();
-        $data = $this->getMock(
-            'Horde_Kolab_Storage_Data_Base', array(), array(), '', false, false
-        );
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Data_Base')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $data->expects($this->once())
             ->method('getId')
             ->will($this->returnValue('test'));
@@ -116,10 +109,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testDuplicateDataSynchronization()
     {
+        $_SESSION=array();
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased();
-        $data = $this->getMock(
-            'Horde_Kolab_Storage_Data_Base', array(), array(), '', false, false
-        );
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Data_Base')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $data->expects($this->once())
             ->method('synchronize');
         $synchronization->synchronizeData($data);
@@ -128,11 +120,10 @@ extends PHPUnit_Framework_TestCase
 
     public function testDuplicateDataSynchronizationAfterSyncTimeElapsed()
     {
+        $_SESSION=array();
         $this->markTestSkipped('Test with embedded "sleep()". Only useful for the development phase.');
         $synchronization = new Horde_Kolab_Storage_Synchronization_TimeBased(1, 0);
-        $data = $this->getMock(
-            'Horde_Kolab_Storage_Data_Base', array(), array(), '', false, false
-        );
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Data_Base')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $data->expects($this->exactly(2))
             ->method('synchronize');
         $synchronization->synchronizeData($data);

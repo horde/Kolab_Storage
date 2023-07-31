@@ -24,12 +24,12 @@
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Query_ActiveSync_CacheTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testInitActiveSync()
     {
-        $this->query = $this->getMock('Horde_Kolab_Storage_List_Query_ActiveSync');
-        $this->cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $this->query = $this->getMockBuilder('Horde_Kolab_Storage_List_Query_ActiveSync')->getMock();
+        $this->cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $this->cache->expects($this->once())
             ->method('hasQuery')
             ->with(Horde_Kolab_Storage_List_Query_ActiveSync_Cache::ACTIVE_SYNC)
@@ -168,8 +168,8 @@ extends PHPUnit_Framework_TestCase
 
     private function _getActivesync()
     {
-        $this->query = $this->getMock('Horde_Kolab_Storage_List_Query_ActiveSync');
-        $this->cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $this->query = $this->getMockBuilder('Horde_Kolab_Storage_List_Query_ActiveSync')->getMock();
+        $this->cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         return new Horde_Kolab_Storage_List_Query_ActiveSync_Cache(
             $this->query, $this->cache
         );

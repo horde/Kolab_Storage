@@ -92,7 +92,7 @@ extends Horde_Kolab_Storage_TestCase
             ->getData('INBOX/Calendar')
             ->fetchPart(1, '2')
         );
-        $this->assertContains('<event', $part);
+        $this->assertStringContainsString('<event', $part);
     }
 
     public function testFetch()
@@ -157,8 +157,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetObjects()
     {
-        $this->assertInternalType(
-            'array',
+        $this->assertIsArray(
             $this->getMessageStorage()
             ->getData('INBOX/Calendar')
             ->getObjects()
@@ -178,8 +177,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetObjectIds()
     {
-        $this->assertInternalType(
-            'array',
+        $this->assertIsArray(
             $this->getMessageStorage()->getData('INBOX/Calendar')->getObjectIds()
         );
     }
@@ -206,11 +204,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingBackendId()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getMessageStorage()
             ->getData('INBOX/Calendar')
             ->getBackendId('NOSUCHOBJECT');
@@ -245,11 +242,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingObject()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $object = $this->getMessageStorage()
             ->getData('INBOX/Calendar')
             ->getObject('NOSUCHOBJECT');
@@ -273,7 +269,7 @@ extends Horde_Kolab_Storage_TestCase
             ->fetch(array(1, 2, 4), true);
         $part = $objects[4]->getContent();
         rewind($part);
-        $this->assertContains('<uid>libkcal-543769073.130</uid>', stream_get_contents($part));
+        $this->assertStringContainsString('<uid>libkcal-543769073.130</uid>', stream_get_contents($part));
     }
 
     public function testCreateRaw()
@@ -346,11 +342,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testModifyWithoutUid()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $store = $this->getMessageStorage();
         $data = $store->getData('INBOX/Notes');
         $object = array('summary' => 'test', 'uid' => 'UID');
@@ -358,11 +353,10 @@ extends Horde_Kolab_Storage_TestCase
         $data->modify(array('summary' => 'test'));
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testModifyWithIncorrectUid()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $store = $this->getMessageStorage();
         $data = $store->getData('INBOX/Notes');
         $object = array('summary' => 'test', 'uid' => 'UID');

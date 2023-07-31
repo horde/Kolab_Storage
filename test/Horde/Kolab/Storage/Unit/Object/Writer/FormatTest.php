@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_Object_Writer_FormatTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testLoad()
     {
@@ -34,12 +34,12 @@ extends PHPUnit_Framework_TestCase
         $data = "<?xml version=\"1.0\"?>\n<kolab><test/></kolab>";
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data);
-        $format = $this->getMock('Horde_Kolab_Format');
+        $format = $this->getMockBuilder('Horde_Kolab_Format')->getMock();
         $format->expects($this->once())
             ->method('load')
             ->with($content)
             ->will($this->returnValue($array));
-        $factory = $this->getMock('Horde_Kolab_Format_Factory');
+        $factory = $this->getMockBuilder('Horde_Kolab_Format_Factory')->getMock();
         $factory->expects($this->once())
             ->method('create')
             ->with('Xml', 'event', array())
@@ -47,7 +47,7 @@ extends PHPUnit_Framework_TestCase
         $raw = new Horde_Kolab_Storage_Object_Writer_Format(
             $factory
         );
-        $object = $this->getMock('Horde_Kolab_Storage_Object');
+        $object = $this->getMockBuilder('Horde_Kolab_Storage_Object')->getMock();
         $object->expects($this->once())
             ->method('setData')
             ->with($array);
@@ -62,12 +62,12 @@ extends PHPUnit_Framework_TestCase
         $data = "<?xml version=\"1.0\"?>\n<kolab><test/></kolab>";
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data);
-        $format = $this->getMock('Horde_Kolab_Format');
+        $format = $this->getMockBuilder('Horde_Kolab_Format')->getMock();
         $format->expects($this->once())
             ->method('load')
             ->with($content)
             ->will($this->throwException(new Horde_Kolab_Format_Exception()));
-        $factory = $this->getMock('Horde_Kolab_Format_Factory');
+        $factory = $this->getMockBuilder('Horde_Kolab_Format_Factory')->getMock();
         $factory->expects($this->once())
             ->method('create')
             ->with('Xml', 'event', array())
@@ -75,7 +75,7 @@ extends PHPUnit_Framework_TestCase
         $raw = new Horde_Kolab_Storage_Object_Writer_Format(
             $factory
         );
-        $object = $this->getMock('Horde_Kolab_Storage_Object');
+        $object = $this->getMockBuilder('Horde_Kolab_Storage_Object')->getMock();
         $object->expects($this->once())
             ->method('setContent')
             ->with($content);
@@ -92,12 +92,12 @@ extends PHPUnit_Framework_TestCase
         $data = "<?xml version=\"1.0\"?>\n<kolab><test/></kolab>";
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data);
-        $format = $this->getMock('Horde_Kolab_Format');
+        $format = $this->getMockBuilder('Horde_Kolab_Format')->getMock();
         $format->expects($this->once())
             ->method('save')
             ->with($array, array('previous' => 'previous'))
             ->will($this->returnValue($content));
-        $factory = $this->getMock('Horde_Kolab_Format_Factory');
+        $factory = $this->getMockBuilder('Horde_Kolab_Format_Factory')->getMock();
         $factory->expects($this->once())
             ->method('create')
             ->with('Xml', 'event', array())
@@ -105,7 +105,7 @@ extends PHPUnit_Framework_TestCase
         $raw = new Horde_Kolab_Storage_Object_Writer_Format(
             $factory
         );
-        $object = $this->getMock('Horde_Kolab_Storage_Object');
+        $object = $this->getMockBuilder('Horde_Kolab_Storage_Object')->getMock();
         $object->expects($this->once())
             ->method('getData')
             ->will($this->returnValue($array));
@@ -121,21 +121,20 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Object_Exception
-     */
     public function testSaveFailure()
     {
+        $this->expectException('Horde_Kolab_Storage_Object_Exception');
+
         $array = array('x' => 'y');
         $data = "<?xml version=\"1.0\"?>\n<kolab><test/></kolab>";
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data);
-        $format = $this->getMock('Horde_Kolab_Format');
+        $format = $this->getMockBuilder('Horde_Kolab_Format')->getMock();
         $format->expects($this->once())
             ->method('save')
             ->with($array, array('previous' => 'previous'))
             ->will($this->throwException(new Horde_Kolab_Format_Exception()));
-        $factory = $this->getMock('Horde_Kolab_Format_Factory');
+        $factory = $this->getMockBuilder('Horde_Kolab_Format_Factory')->getMock();
         $factory->expects($this->once())
             ->method('create')
             ->with('Xml', 'event', array())
@@ -143,7 +142,7 @@ extends PHPUnit_Framework_TestCase
         $raw = new Horde_Kolab_Storage_Object_Writer_Format(
             $factory
         );
-        $object = $this->getMock('Horde_Kolab_Storage_Object');
+        $object = $this->getMockBuilder('Horde_Kolab_Storage_Object')->getMock();
         $object->expects($this->once())
             ->method('getData')
             ->will($this->returnValue($array));

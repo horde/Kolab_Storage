@@ -33,11 +33,10 @@ extends Horde_Kolab_Storage_TestCase
         $this->assertEquals('test', $this->getMockDataCache()->getDataId());
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingDataId()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $cache = new Horde_Kolab_Storage_Cache_Data($this->getMockCache());
         $cache->getDataId();
     }
@@ -69,6 +68,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetObjects()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->_getSyncedCache()->getObjects();
     }
 
@@ -80,11 +81,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingObjects()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getMockDataCache()->getObjects();
     }
 
@@ -106,6 +106,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetObjectToBackend()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->_getSyncedCache()->getObjectToBackend();
     }
 
@@ -117,11 +119,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingObjectToBackend()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getMockDataCache()->getObjectToBackend();
     }
 
@@ -143,6 +144,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetBackendToObject()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->_getSyncedCache()->getBackendToObject();
     }
 
@@ -154,11 +157,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingBackendToObject()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getMockDataCache()->getBackendToObject();
     }
 
@@ -180,22 +182,22 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetStamp()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->_getSyncedCache()->getStamp();
     }
 
     public function testGetStampEmpty()
     {
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $this->_getSyncedCache()->getStamp()
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingStamp()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getMockDataCache()->getStamp();
     }
 
@@ -217,22 +219,22 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetVersion()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->_getSyncedCache()->getVersion();
     }
 
     public function testGetVersionEmpty()
     {
-        $this->assertInternalType(
-            'string',
+        $this->assertIsString(
             $this->_getSyncedCache()->getVersion()
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingVersion()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getMockDataCache()->getVersion();
     }
 
@@ -276,11 +278,10 @@ extends Horde_Kolab_Storage_TestCase
         $this->assertEquals(array(3), $cache->getErrors());
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testReset()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $cache = $this->_getSyncedCache();
         $cache->reset();
         $cache->getStamp();
@@ -478,11 +479,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingAttachmentByName()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getSyncedCacheWithAttachment('Y')
             ->getAttachmentByName('100', 'dubidu.txt');
     }
@@ -498,29 +498,26 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingAttachmentType()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getSyncedCacheWithAttachment('Y')
             ->getAttachmentByType('100', 'application/x-vnd.kolab.contact');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingAttachmentByType()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getSyncedCacheWithAttachment('Y')
             ->getAttachmentByType('200', 'application/x-vnd.kolab.event');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingQuery()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getMockDataCache()->getQuery('x');
     }
 

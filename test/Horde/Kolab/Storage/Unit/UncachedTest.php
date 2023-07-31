@@ -30,6 +30,8 @@ extends Horde_Kolab_Storage_TestCase
 {
     public function testConstruction()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->createStorage();
     }
 
@@ -88,11 +90,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testNoSystemUser()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->assertInstanceOf(
             'Horde_Kolab_Storage_List',
             $this->createStorage()->getSystemList('test')

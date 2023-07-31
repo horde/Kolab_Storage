@@ -26,35 +26,35 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Synchronization_Decorator_LogTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testRegisterListener()
     {
-        $base = $this->getMock('Horde_Kolab_Storage_List_Synchronization');
+        $base = $this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization')->getMock();
         $base->expects($this->once())
             ->method('registerListener');
         $synchronization = new Horde_Kolab_Storage_List_Synchronization_Decorator_Log(
-            $base, $this->getMock('Horde_Log_Logger')
+            $base, $this->getMockBuilder('Horde_Log_Logger')->getMock()
         );
-        $listener = $this->getMock('Horde_Kolab_Storage_List_Synchronization_Listener');
+        $listener = $this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization_Listener')->getMock();
         $synchronization->registerListener($listener);
     }
 
     public function testSynchronize()
     {
-        $base = $this->getMock('Horde_Kolab_Storage_List_Synchronization');
+        $base = $this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization')->getMock();
         $base->expects($this->once())
             ->method('synchronize');
         $synchronization = new Horde_Kolab_Storage_List_Synchronization_Decorator_Log(
-            $base, $this->getMock('Horde_Log_Logger')
+            $base, $this->getMockBuilder('Horde_Log_Logger')->getMock()
         );
         $synchronization->synchronize();
     }
 
     public function testSynchronizationLog()
     {
-        $base = $this->getMock('Horde_Kolab_Storage_List_Synchronization');
-        $logger = $this->getMock('Horde_Log_Logger', array('debug'));
+        $base = $this->getMockBuilder('Horde_Kolab_Storage_List_Synchronization')->getMock();
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('debug'))->getMock();
         $logger->expects($this->once())
             ->method('debug')
             ->with('Synchronized the Kolab folder list!');

@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Query_List_Cache_SynchronizationTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testSynchronizeNamespace()
     {
@@ -116,8 +116,8 @@ extends PHPUnit_Framework_TestCase
 
     public function testUpdateAfterCreateFolderExit()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->once())
             ->method('hasNamespace')
             ->will($this->returnValue(false));
@@ -135,8 +135,8 @@ extends PHPUnit_Framework_TestCase
     public function testUpdateAfterCreateFolder()
     {
         $namespace = new Horde_Kolab_Storage_Folder_Namespace_Fixed('test');
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->exactly(2))
             ->method('hasNamespace')
             ->will($this->returnValue(true));
@@ -167,8 +167,8 @@ extends PHPUnit_Framework_TestCase
     public function testUpdateAfterCreateFolderWithType()
     {
         $namespace = new Horde_Kolab_Storage_Folder_Namespace_Fixed('test');
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->exactly(2))
             ->method('hasNamespace')
             ->will($this->returnValue(true));
@@ -198,8 +198,8 @@ extends PHPUnit_Framework_TestCase
 
     public function testUpdateAfterDeleteFolderExit()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->once())
             ->method('hasNamespace')
             ->will($this->returnValue(false));
@@ -217,8 +217,8 @@ extends PHPUnit_Framework_TestCase
     public function testUpdateAfterDeleteFolder()
     {
         $namespace = new Horde_Kolab_Storage_Folder_Namespace_Fixed('test');
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->exactly(2))
             ->method('hasNamespace')
             ->will($this->returnValue(true));
@@ -248,8 +248,8 @@ extends PHPUnit_Framework_TestCase
 
     public function testUpdateAfterRenameFolderExit()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->once())
             ->method('hasNamespace')
             ->will($this->returnValue(false));
@@ -267,8 +267,8 @@ extends PHPUnit_Framework_TestCase
     public function testUpdateAfterRenameFolder()
     {
         $namespace = new Horde_Kolab_Storage_Folder_Namespace_Fixed('test');
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->exactly(2))
             ->method('hasNamespace')
             ->will($this->returnValue(true));
@@ -298,8 +298,8 @@ extends PHPUnit_Framework_TestCase
 
     private function _getSynchronization()
     {
-        $this->driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $this->cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $this->driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $this->cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $this->driver->expects($this->once())
             ->method('listFolders')
             ->will($this->returnValue(array('INBOX/Test')));
@@ -307,8 +307,8 @@ extends PHPUnit_Framework_TestCase
             ->method('listAnnotation')
             ->with(Horde_Kolab_Storage_List_Query_List_Base::ANNOTATION_FOLDER_TYPE)
             ->will($this->returnValue(array('INBOX/Test' => 'a.default')));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $namespace->expects($this->exactly(2))
             ->method('getOwner')
             ->with('INBOX/Test')
@@ -351,20 +351,20 @@ extends PHPUnit_Framework_TestCase
     public function testGetDuplicateDefaults()
     {
         $duplicates = array('a' => 'b');
-        $defaults = $this->getMock('Horde_Kolab_Storage_List_Query_List_Defaults_Bail');
+        $defaults = $this->getMockBuilder('Horde_Kolab_Storage_List_Query_List_Defaults_Bail')->getMock();
         $defaults->expects($this->once())
             ->method('getDuplicates')
             ->will($this->returnValue($duplicates));
         $synchronization = new Horde_Kolab_Storage_List_Query_List_Cache_Synchronization(
-            $this->getMock('Horde_Kolab_Storage_Driver'), new Horde_Kolab_Storage_Folder_Types(), $defaults
+            $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock(), new Horde_Kolab_Storage_Folder_Types(), $defaults
         );
         $this->assertEquals($duplicates, $synchronization->getDuplicateDefaults());
     }
 
     public function testSetDefaultExit()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->once())
             ->method('hasNamespace')
             ->will($this->returnValue(false));
@@ -382,7 +382,7 @@ extends PHPUnit_Framework_TestCase
     public function testSetDefault()
     {
         $namespace = new Horde_Kolab_Storage_Folder_Namespace_Fixed('test');
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('setAnnotation')
             ->with(
@@ -391,7 +391,7 @@ extends PHPUnit_Framework_TestCase
                 'contact.default'
             );
 
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->exactly(2))
             ->method('hasNamespace')
             ->will($this->returnValue(true));
@@ -425,13 +425,12 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testSetDefaultFailsWithoutPreviousType()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array('hasNamespace', 'getFolderTypes'), array(), '', false, false);
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->setMethods(array('hasNamespace', 'getFolderTypes'))->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->once())
             ->method('hasNamespace')
             ->will($this->returnValue(true));
@@ -453,13 +452,12 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testSetDefaultFailsOutsidePersonalNamespace()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array('hasNamespace', 'getFolderTypes'), array(), '', false, false);
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->setMethods(array('hasNamespace', 'getFolderTypes'))->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->once())
             ->method('hasNamespace')
             ->will($this->returnValue(true));
@@ -481,7 +479,7 @@ extends PHPUnit_Framework_TestCase
     public function testSetDefaultResetPreviousDefault()
     {
         $namespace = new Horde_Kolab_Storage_Folder_Namespace_Fixed('test');
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->exactly(2))
             ->method('setAnnotation')
             ->with(
@@ -496,7 +494,7 @@ extends PHPUnit_Framework_TestCase
                 )
             );
 
-        $cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $cache->expects($this->exactly(2))
             ->method('hasNamespace')
             ->will($this->returnValue(true));

@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_Object_MimeTypeTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     /**
      * @dataProvider getObjectAndMimeTypes
@@ -39,11 +39,10 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Data_Exception
-     */
     public function testUndefinedMimeObjectType()
     {
+        $this->expectException('Horde_Kolab_Storage_Data_Exception');
+
         Horde_Kolab_Storage_Object_MimeType::getMimeTypeFromObjectType('UNDEFINED');
     }
 
@@ -156,11 +155,10 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Data_Exception
-     */
     public function testUndefinedMimeFolderType()
     {
+        $this->expectException('Horde_Kolab_Storage_Data_Exception');
+
         Horde_Kolab_Storage_Object_MimeType::getMimeTypesFromFolderType('UNDEFINED');
     }
 

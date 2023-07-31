@@ -26,10 +26,12 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_Folder_TypesTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testConstruction()
     {
+        $this->expectNotToPerformAssertions();
+
         new Horde_Kolab_Storage_Folder_Types();
     }
 

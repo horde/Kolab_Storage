@@ -30,7 +30,7 @@ extends Horde_Kolab_Storage_TestCase
 {
     public function testGetMailboxesReturnsArray()
     {
-        $this->assertInternalType('array', $this->getNullMock()->listFolders());
+        $this->assertIsArray($this->getNullMock()->listFolders());
     }
 
     public function testGetMailboxesEmpty()
@@ -56,19 +56,17 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetAclFailsOnMissing()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getNullMock()->getAcl('INBOX/test');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetAclOnHidden()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $mock = $this->getNullMock();
         $mock->create('INBOX/Test');
         $mock->setAcl('INBOX/Test', $mock->getAuth(), '');
@@ -115,19 +113,17 @@ extends Horde_Kolab_Storage_TestCase
         $this->assertEquals(array('group:group' => 'a'), $mock->getAcl('INBOX/Test'));
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMyAclFailsOnMissing()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getNullMock()->getMyAcl('INBOX/test');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMyAclOnHidden()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $mock = $this->getNullMock();
         $mock->create('INBOX/Test');
         $mock->deleteAcl('INBOX/Test', $mock->getAuth());
@@ -162,19 +158,17 @@ extends Horde_Kolab_Storage_TestCase
         $this->assertEquals('l', $mock->getMyAcl('INBOX/Test'));
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testSetAclFailsOnMissing()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getNullMock()->setAcl('INBOX/test', 'a', 'b');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testSetAclOnHidden()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $mock = $this->getNullMock();
         $mock->create('INBOX/Test');
         $mock->deleteAcl('INBOX/Test', $mock->getAuth());
@@ -195,6 +189,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testSetAclWithAnyone()
     {
+        $this->expectNotToPerformAssertions();
+
         $mock = $this->getNullMock();
         $mock->create('INBOX/Test');
         $mock->setAcl('INBOX/Test', 'anyone', 'a');
@@ -204,6 +200,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testSetAclWithAnonymous()
     {
+        $this->expectNotToPerformAssertions();
+
         $mock = $this->getNullMock();
         $mock->create('INBOX/Test');
         $mock->setAcl('INBOX/Test', 'anonymous', 'a');
@@ -213,6 +211,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testSetAclWithGroup()
     {
+        $this->expectNotToPerformAssertions();
+
         $mock = $this->getNullMock();
         $mock->setGroups(array($mock->getAuth() => array('group')));
         $mock->create('INBOX/Test');
@@ -221,19 +221,17 @@ extends Horde_Kolab_Storage_TestCase
         $mock->setAcl('INBOX/Test', 'a', 'b');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testDeleteAclFailsOnMissing()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getNullMock()->deleteAcl('INBOX/test', 'a');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testDeleteAclOnHidden()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $mock = $this->getNullMock();
         $mock->create('INBOX/Test');
         $mock->setAcl('INBOX/Test', $mock->getAuth(), '');
@@ -254,6 +252,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testDeleteAclWithAnyone()
     {
+        $this->expectNotToPerformAssertions();
+
         $mock = $this->getNullMock();
         $mock->create('INBOX/Test');
         $mock->setAcl('INBOX/Test', 'anyone', 'a');
@@ -263,6 +263,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testDeleteAclWithAnonymous()
     {
+        $this->expectNotToPerformAssertions();
+
         $mock = $this->getNullMock();
         $mock->create('INBOX/Test');
         $mock->setAcl('INBOX/Test', 'anonymous', 'a');
@@ -272,6 +274,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testDeleteAclWithGroup()
     {
+        $this->expectNotToPerformAssertions();
+
         $mock = $this->getNullMock();
         $mock->setGroups(array($mock->getAuth() => array('group')));
         $mock->create('INBOX/Test');
@@ -280,18 +284,16 @@ extends Horde_Kolab_Storage_TestCase
         $mock->deleteAcl('INBOX/Test', 'group:group');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testSetAnnotationFailsOnMissing()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getNullMock()->setAnnotation('INBOX/test', 'a', 'b');
     }
 
     public function testListAnnotationReturnsArray()
     {
-        $this->assertInternalType(
-            'array',
+        $this->assertIsArray(
             $this->getNullMock()->listAnnotation(
                 '/shared/vendor/kolab/folder-type'
             )
@@ -425,11 +427,13 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetIdReturnsString()
     {
-        $this->assertInternalType('string', $this->getNullMock()->getId());
+        $this->assertIsString($this->getNullMock()->getId());
     }
 
     public function testSelect()
     {
+        $this->expectNotToPerformAssertions();
+
         $mock = $this->getMessageMock();
         $mock->select('INBOX/Test');
     }
@@ -442,11 +446,10 @@ extends Horde_Kolab_Storage_TestCase
         $this->assertEquals(1, $status['uidnext']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissing()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $mock = $this->getNullMock();
         $mock->select('INBOX/Test');
     }
@@ -461,6 +464,8 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetUids()
     {
+        $this->expectNotToPerformAssertions();
+
         $mock = $this->getMessageMock();
         $mock->getUids('INBOX/Test');
     }
@@ -514,8 +519,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testBodypartResource()
     {
-        $this->assertInternalType(
-            'resource',
+        $this->assertIsResource(
             $this->getMessageMock()
             ->fetchBodypart(
                 'INBOX/Calendar', 4, '2'

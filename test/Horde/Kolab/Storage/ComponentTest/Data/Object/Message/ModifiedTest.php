@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_ComponentTest_Data_Object_Message_ModifiedTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testStore()
     {
@@ -38,7 +38,7 @@ extends PHPUnit_Framework_TestCase
         );
         $object = new Horde_Kolab_Storage_Object();
         $object->setDriver($driver);
-        $folder = $this->getMock('Horde_Kolab_Storage_Folder');
+        $folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->getMock();
         $folder->expects($this->once())
             ->method('getPath')
             ->will($this->returnValue('INBOX'));

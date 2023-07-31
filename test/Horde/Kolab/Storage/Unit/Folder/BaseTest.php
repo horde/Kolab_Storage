@@ -28,6 +28,8 @@ extends Horde_Kolab_Storage_TestCase
 {
     public function testConstructor()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->_getFolderMock();
     }
 
@@ -45,11 +47,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingNamespace()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getFolderMock()->getNamespace();
     }
 
@@ -61,11 +62,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingTitle()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getFolderMock()->getTitle();
     }
 
@@ -90,11 +90,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingSubpath()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getFolderMock()->getSubpath();
     }
 
@@ -105,11 +104,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingDefault()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getFolderMock()->isDefault();
     }
 
@@ -121,11 +119,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingType()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getFolderMock()->getType();
     }
 
@@ -137,11 +134,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingPrefix()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getFolderMock()->getPrefix();
     }
 
@@ -155,7 +151,7 @@ extends Horde_Kolab_Storage_TestCase
 
     private function _getListMock($data = array())
     {
-        $query = $this->getMock('Horde_Kolab_Storage_List_Query_List');
+        $query = $this->getMockBuilder('Horde_Kolab_Storage_List_Query_List')->getMock();
         $query->expects($this->any())
             ->method('folderData')
             ->will($this->returnValue($data));
@@ -172,8 +168,8 @@ extends Horde_Kolab_Storage_TestCase
     {
         $this->markTestIncomplete('Currently broken');
         $GLOBALS['language'] = 'de_DE';
-        $storage = $this->getMock('Horde_Kolab_Storage', array(), array(), '', false, false);
-        $connection = $this->getMock('Horde_Kolab_Storage_Driver');
+        $storage = $this->getMockBuilder('Horde_Kolab_Storage')->disableOriginalConstructor()->disableOriginalClone()->getMock();
+        $connection = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $connection->expects($this->once())
             ->method('getNamespace')
             ->will($this->returnValue(new Horde_Kolab_Storage_Driver_Namespace_Fixed()));
@@ -282,7 +278,7 @@ extends Horde_Kolab_Storage_TestCase
     public function testTriggerOwn()
     {
         $this->markTestIncomplete('Currently broken');
-        $folder = $this->getMock('Horde_Kolab_Storage_Folder', array('triggerUrl'));
+        $folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->setMethods(array('triggerUrl'))->getMock();
         $folder->expects($this->once())
             ->method('triggerUrl')
             ->with($this->equalTo('https://fb.example.org/freebusy/trigger/wrobel@example.org/Kalender.pfb'));
@@ -299,7 +295,7 @@ extends Horde_Kolab_Storage_TestCase
     public function testTriggerForeign()
     {
         $this->markTestIncomplete('Currently broken');
-        $folder = $this->getMock('Horde_Kolab_Storage_Folder', array('triggerUrl'));
+        $folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->setMethods(array('triggerUrl'))->getMock();
         $folder->expects($this->exactly(2))
             ->method('triggerUrl')
             ->with($this->equalTo('https://fb.example.org/freebusy/trigger/test@example.org/Kalender.pfb'));

@@ -30,29 +30,27 @@ extends Horde_Kolab_Storage_TestCase
 {
     public function testCreationFromParams()
     {
-        $factory = new Horde_Kolab_Storage_Factory(array('driver' => 'mock', 'logger' => $this->getMock('Horde_Log_Logger')));
+        $factory = new Horde_Kolab_Storage_Factory(array('driver' => 'mock', 'logger' => $this->getMockBuilder('Horde_Log_Logger')->getMock()));
         $this->assertInstanceOf(
             'Horde_Kolab_Storage',
             $factory->create()
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingDriver()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $factory = new Horde_Kolab_Storage_Factory(
             array()
         );
         $factory->createDriver();
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testInvalidDriver()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $factory = new Horde_Kolab_Storage_Factory(
             array('driver' => 'something')
         );
@@ -70,11 +68,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testInvalidNamespace()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $factory = new Horde_Kolab_Storage_Factory();
         $factory->createNamespace(
             'undefined', 'test'

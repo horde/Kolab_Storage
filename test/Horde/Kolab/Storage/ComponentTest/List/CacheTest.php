@@ -36,11 +36,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingListId()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $cache = new Horde_Kolab_Storage_List_Cache($this->getMockCache());
         $cache->getListId();
     }
@@ -77,11 +76,10 @@ extends Horde_Kolab_Storage_TestCase
         $this->assertEquals('DUMMY', $cache->getNamespace());
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingNamespace()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $cache = $this->_getTestCache();
         $cache->getNamespace();
     }
@@ -99,11 +97,10 @@ extends Horde_Kolab_Storage_TestCase
         $this->assertEquals('dummy', $cache->getLongTerm('DUMMY'));
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingLongterm()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $cache = $this->_getTestCache();
         $cache->getLongTerm('DUMMY');
     }
@@ -205,27 +202,24 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingHost()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getTestCache(null, array('port' => 1, 'user' => 'x'));
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingPort()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getTestCache(null, array('host' => 'a', 'user' => 'x'));
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingUser()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getTestCache(null, array('host' => 'a', 'port' => 1));
     }
 

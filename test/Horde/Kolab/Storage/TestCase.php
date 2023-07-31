@@ -26,14 +26,14 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_TestCase
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
-    public function setUp()
+    public function setUp(): void
     {
         $_SESSION = array();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $_SESSION = array();
     }
@@ -59,8 +59,8 @@ extends PHPUnit_Framework_TestCase
             $driver,
             new Horde_Kolab_Storage_QuerySet_Uncached($factory),
             $factory,
-            $this->getMock('Horde_Kolab_Storage_Cache', array(), array(), '', false, false),
-            $this->getMock('Horde_Log_Logger'),
+            $this->getMockBuilder('Horde_Kolab_Storage_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock(),
+            $this->getMockBuilder('Horde_Log_Logger')->getMock(),
             $params
         );
     }
@@ -80,7 +80,7 @@ extends PHPUnit_Framework_TestCase
             new Horde_Kolab_Storage_QuerySet_Cached($factory, array(), $cache),
             $factory,
             $cache,
-            $this->getMock('Horde_Log_Logger')
+            $this->getMockBuilder('Horde_Log_Logger')->getMock()
         );
     }
 
@@ -535,7 +535,7 @@ extends PHPUnit_Framework_TestCase
                 array(
                     'driver' => 'mock',
                     'params' => $data,
-                    'logger' => $this->getMock('Horde_Log_Logger'),
+                    'logger' => $this->getMockBuilder('Horde_Log_Logger')->getMock(),
                     'history_prefix_generator' =>  new Horde_Kolab_Storage_Stub_HistoryPrefix()
                 ),
                 $params
@@ -568,7 +568,7 @@ extends PHPUnit_Framework_TestCase
     protected function getMockDriverList($factory = null)
     {
         $factory = $this->completeFactory($factory);
-        $this->mockDriver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $this->mockDriver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         return new Horde_Kolab_Storage_List_Base(
             $this->mockDriver,
             new Horde_Kolab_Storage_Factory()

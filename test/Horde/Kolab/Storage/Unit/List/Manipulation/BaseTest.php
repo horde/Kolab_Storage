@@ -26,11 +26,11 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Manipulation_BaseTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testCreateFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('create')
             ->with('TEST');
@@ -40,7 +40,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testCreateFolderWithType()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('create')
             ->with('TEST');
@@ -53,7 +53,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testDeleteFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('delete')
             ->with('TEST');
@@ -63,7 +63,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testRenameFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('rename')
             ->with('FOO', 'BAR');
@@ -73,9 +73,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testUpdateAfterCreateFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $manipulation = new Horde_Kolab_Storage_List_Manipulation_Base($driver);
-        $listener = $this->getMock('Horde_Kolab_Storage_List_Manipulation_Listener');
+        $listener = $this->getMockBuilder('Horde_Kolab_Storage_List_Manipulation_Listener')->getMock();
         $listener->expects($this->once())
             ->method('updateAfterCreateFolder')
             ->with('TEST');
@@ -85,9 +85,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testUpdateAfterCreateFolderWithType()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $manipulation = new Horde_Kolab_Storage_List_Manipulation_Base($driver);
-        $listener = $this->getMock('Horde_Kolab_Storage_List_Manipulation_Listener');
+        $listener = $this->getMockBuilder('Horde_Kolab_Storage_List_Manipulation_Listener')->getMock();
         $listener->expects($this->once())
             ->method('updateAfterCreateFolder')
             ->with('TEST', 'event');
@@ -97,9 +97,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testUpdateAfterDeleteFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $manipulation = new Horde_Kolab_Storage_List_Manipulation_Base($driver);
-        $listener = $this->getMock('Horde_Kolab_Storage_List_Manipulation_Listener');
+        $listener = $this->getMockBuilder('Horde_Kolab_Storage_List_Manipulation_Listener')->getMock();
         $listener->expects($this->once())
             ->method('updateAfterDeleteFolder')
             ->with('TEST');
@@ -109,9 +109,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testUpdateAfterRenameFolder()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $manipulation = new Horde_Kolab_Storage_List_Manipulation_Base($driver);
-        $listener = $this->getMock('Horde_Kolab_Storage_List_Manipulation_Listener');
+        $listener = $this->getMockBuilder('Horde_Kolab_Storage_List_Manipulation_Listener')->getMock();
         $listener->expects($this->once())
             ->method('updateAfterRenameFolder')
             ->with('FOO', 'BAR');

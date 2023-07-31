@@ -67,11 +67,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testNoSuchDataQuerySet()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $factory = new Horde_Kolab_Storage_Factory();
         new Horde_Kolab_Storage_QuerySet_Uncached(
             $factory, array('data' => array('queryset' => 'NO_SUCH_SET'))

@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Query_List_DefaultsTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testMarkCompleteIsComplete()
     {
@@ -72,11 +72,10 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_List_Exception
-     */
     public function testBailOnDoubleDefault()
     {
+        $this->expectException('Horde_Kolab_Storage_List_Exception');
+
         $bail = new Horde_Kolab_Storage_List_Query_List_Defaults_Bail();
         $bail->rememberDefault('FooA', 'TypeFOO', 'Mr. Foo', false);
         $bail->rememberDefault('FooC', 'TypeFOO', 'Mr. Foo', false);
@@ -84,7 +83,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testLogOnDoubleDefault()
     {
-        $logger = $this->getMock('Horde_Log_Logger', array('err'));
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('err'))->getMock();
         $logger->expects($this->once())
             ->method('err')
             ->with('Both folders "FooA" and "FooC" of owner "Mr. Foo" are marked as default folder of type "TypeFOO"!');
@@ -97,7 +96,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testDuplicates()
     {
-        $logger = $this->getMock('Horde_Log_Logger', array('err'));
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('err'))->getMock();
         $log = new Horde_Kolab_Storage_List_Query_List_Defaults_Log(
             $logger
         );
@@ -115,7 +114,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testTriplicate()
     {
-        $logger = $this->getMock('Horde_Log_Logger', array('err'));
+        $logger = $this->getMockBuilder('Horde_Log_Logger')->setMethods(array('err'))->getMock();
         $log = new Horde_Kolab_Storage_List_Query_List_Defaults_Log(
             $logger
         );

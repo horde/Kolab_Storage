@@ -51,19 +51,20 @@ extends Horde_Kolab_Storage_TestCase
             $this->_getDataCache()
             ->fetchPart(1, '2')
         );
-        $this->assertContains('<event', $part);
+        $this->assertStringContainsString('<event', $part);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingObjects()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->getMockDataCache()->getObjects();
     }
 
     public function testSynchronize()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->_getDataCache()->synchronize();
     }
 
@@ -82,8 +83,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetObjects()
     {
-        $this->assertInternalType(
-            'array',
+        $this->assertIsArray(
             $this->_getDataCache()
             ->getObjects()
         );
@@ -101,8 +101,7 @@ extends Horde_Kolab_Storage_TestCase
 
     public function testGetObjectIds()
     {
-        $this->assertInternalType(
-            'array',
+        $this->assertIsArray(
             $this->_getDataCache()->getObjectIds()
         );
     }
@@ -128,11 +127,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testMissingBackendId()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $this->_getDataCache()
             ->getBackendId('NOSUCHOBJECT');
     }
@@ -163,11 +161,10 @@ extends Horde_Kolab_Storage_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testGetMissingObject()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $object = $this->_getDataCache()
             ->getObject('NOSUCHOBJECT');
     }

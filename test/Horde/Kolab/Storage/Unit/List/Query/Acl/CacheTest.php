@@ -24,12 +24,12 @@
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Query_Acl_CacheTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testInitGetAcl()
     {
-        $this->query = $this->getMock('Horde_Kolab_Storage_List_Query_Acl');
-        $this->cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $this->query = $this->getMockBuilder('Horde_Kolab_Storage_List_Query_Acl')->getMock();
+        $this->cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         $this->cache->expects($this->exactly(3))
             ->method('hasQuery')
             ->with(
@@ -338,8 +338,8 @@ extends PHPUnit_Framework_TestCase
 
     private function _getAcl()
     {
-        $this->query = $this->getMock('Horde_Kolab_Storage_List_Query_Acl');
-        $this->cache = $this->getMock('Horde_Kolab_Storage_List_Cache', array(), array(), '', false, false);
+        $this->query = $this->getMockBuilder('Horde_Kolab_Storage_List_Query_Acl')->getMock();
+        $this->cache = $this->getMockBuilder('Horde_Kolab_Storage_List_Cache')->disableOriginalConstructor()->disableOriginalClone()->getMock();
         return new Horde_Kolab_Storage_List_Query_Acl_Cache(
             $this->query, $this->cache
         );

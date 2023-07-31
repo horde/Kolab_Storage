@@ -26,27 +26,26 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_ObjectTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
-    public function setUp()
+    public function setUp(): void
     {
-        $this->folder = $this->getMock('Horde_Kolab_Storage_Folder');
-        $this->driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $this->folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->getMock();
+        $this->driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Data_Exception
-     */
     public function testInvalidInitialStructure()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $this->expectException('Horde_Kolab_Storage_Data_Exception');
+
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $object->load('1', $this->folder, $data, new Horde_Mime_Part());
     }
 
     public function testObjectType()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $this->folder->expects($this->once())
             ->method('getType')
@@ -66,9 +65,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testObjectTypeDeviatesFromFolderType()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $headers->method('__call')
             ->with('getValue', array('X-Kolab-Type'))
             ->will($this->returnValue('application/x-vnd.kolab.note'));
@@ -94,9 +93,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testMissingKolabPart()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $headers->method('__call')
             ->with('getValue', array('X-Kolab-Type'))
             ->will($this->returnValue('application/x-vnd.kolab.note'));
@@ -121,18 +120,18 @@ extends PHPUnit_Framework_TestCase
             Horde_Kolab_Storage_Object::TYPE_INVALID,
             $object->getType()
         );
-        $this->assertContains(
+        $this->assertStringContainsString(
             Horde_Kolab_Storage_Object::ERROR_MISSING_KOLAB_PART,
-            array_keys($object->getParseErrors())
+            join(" ", array_keys($object->getParseErrors()))
         );
         $this->assertTrue($object->hasParseErrors());
     }
 
     public function testObjectRetainsHeadersIfLoaded()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $headers->method('__call')
             ->with('getValue', array('X-Kolab-Type'))
             ->will($this->returnValue('application/x-vnd.kolab.note'));
@@ -158,9 +157,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testObjectFetchesHeadersOnRequest()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $this->folder->expects($this->once())
             ->method('getType')
             ->will($this->returnValue('event'));
@@ -187,9 +186,9 @@ extends PHPUnit_Framework_TestCase
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data_string);
 
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $this->folder->expects($this->once())
             ->method('getType')
             ->will($this->returnValue('event'));
@@ -212,15 +211,14 @@ extends PHPUnit_Framework_TestCase
         $this->assertSame($content, $object->getContent());
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Object_Exception
-     */
     public function testGetDriverThrowsExceptionIfUnset()
     {
+        $this->expectException('Horde_Kolab_Storage_Object_Exception');
+
         $object = new Horde_Kolab_Storage_Object();
         $object->create(
-            $this->getMock('Horde_Kolab_Storage_Folder'),
-            $this->getMock('Horde_Kolab_Storage_Object_Writer'),
+            $this->getMockBuilder('Horde_Kolab_Storage_Folder')->getMock(),
+            $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock(),
             'event'
         );
     }
@@ -296,11 +294,10 @@ extends PHPUnit_Framework_TestCase
         $this->assertEquals(array('a' => 'A'), $object->getData());
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Object_Exception
-     */
     public function testUnserializeInvalidData()
     {
+        $this->expectException('Horde_Kolab_Storage_Object_Exception');
+
         $object = new Horde_Kolab_Storage_Object();
         $object->unserialize(serialize('A'));
     }        
@@ -318,9 +315,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testSerializeUnserializeRetainsErrors()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $headers->method('__call')
             ->with('getValue', array('X-Kolab-Type'))
             ->will($this->returnValue('application/x-vnd.kolab.note'));
@@ -343,17 +340,17 @@ extends PHPUnit_Framework_TestCase
         );
         $new_object = new Horde_Kolab_Storage_Object();
         $new_object->unserialize($object->serialize());
-        $this->assertContains(
+        $this->assertStringContainsString(
             Horde_Kolab_Storage_Object::ERROR_MISSING_KOLAB_PART,
-            array_keys($new_object->getParseErrors())
+            join(" ", array_keys($new_object->getParseErrors()))
         );
     }        
 
     public function testSerializeUnserializeRetainsType()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $this->folder->expects($this->once())
             ->method('getType')
             ->will($this->returnValue('event'));
@@ -374,9 +371,9 @@ extends PHPUnit_Framework_TestCase
 
     public function testSerializeUnserializeRetainsBackendIdAndFolder()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $this->folder->expects($this->once())
             ->method('getType')
             ->will($this->returnValue('event'));
@@ -406,7 +403,7 @@ extends PHPUnit_Framework_TestCase
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data_string);
 
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $this->folder->expects($this->once())
             ->method('getType')
@@ -433,12 +430,11 @@ extends PHPUnit_Framework_TestCase
         $this->assertSame($content, $new_object->getContent());
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Object_Exception
-     */
     public function testFetchingContentsFailsWithMissingFolder()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $this->expectException('Horde_Kolab_Storage_Object_Exception');
+
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $this->folder->expects($this->once())
             ->method('getType')
@@ -456,12 +452,11 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Object_Exception
-     */
     public function testFetchingContentsFailsWithMissingBackendId()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $this->expectException('Horde_Kolab_Storage_Object_Exception');
+
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $this->folder->expects($this->once())
             ->method('getType')
@@ -479,13 +474,12 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Object_Exception
-     */
     public function testFetchingContentsFailsWithMissingMimeId()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $this->expectException('Horde_Kolab_Storage_Object_Exception');
+
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $this->folder->expects($this->once())
             ->method('getType')
@@ -514,11 +508,11 @@ extends PHPUnit_Framework_TestCase
         $content = fopen('php://temp', 'r+');
         fwrite($content, $data_string);
 
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $data->expects($this->once())
             ->method('load');
-        $headers = $this->getMock('Horde_Mime_Headers');
+        $headers = $this->getMockBuilder('Horde_Mime_Headers')->getMock();
         $this->folder->expects($this->once())
             ->method('getType')
             ->will($this->returnValue('event'));
@@ -543,15 +537,15 @@ extends PHPUnit_Framework_TestCase
     public function testMimeEnvelope()
     {
         $driver = new Horde_Kolab_Storage_Stub_Driver('user');
-        $folder = $this->getMock('Horde_Kolab_Storage_Folder');
+        $folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->getMock();
         $folder->expects($this->once())
             ->method('getPath')
             ->will($this->returnValue('INBOX'));
-        $writer = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $writer = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $object->setDriver($driver);
         $object->create($folder, $writer, 'event');
-        $this->assertContains('MIME-Version: 1.0', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('MIME-Version: 1.0', $driver->messages['INBOX'][0]);
     }
 
     public function testEnvelope()
@@ -559,30 +553,30 @@ extends PHPUnit_Framework_TestCase
         setlocale(LC_MESSAGES, 'C');
 
         $driver = new Horde_Kolab_Storage_Stub_Driver('user');
-        $folder = $this->getMock('Horde_Kolab_Storage_Folder');
+        $folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->getMock();
         $folder->expects($this->once())
             ->method('getPath')
             ->will($this->returnValue('INBOX'));
-        $writer = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $writer = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $object->setData(array('uid' => 'UID'));
         $object->setDriver($driver);
         $object->create($folder, $writer, 'event');
 
-        $this->assertContains('Content-Disposition: attachment; filename="Kolab Groupware Data"', $driver->messages['INBOX'][0]);
-        $this->assertContains('Content-Type: multipart/mixed;', $driver->messages['INBOX'][0]);
-        $this->assertContains('Content-Type: text/plain; charset=utf-8; name="Kolab Groupware Information"', $driver->messages['INBOX'][0]);
-        $this->assertContains('Content-Disposition: inline; filename="Kolab Groupware Information"', $driver->messages['INBOX'][0]);
-        $this->assertContains(
+        $this->assertStringContainsString('Content-Disposition: attachment; filename="Kolab Groupware Data"', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('Content-Type: multipart/mixed;', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('Content-Type: text/plain; charset=utf-8; name="Kolab Groupware Information"', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('Content-Disposition: inline; filename="Kolab Groupware Information"', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString(
             "This is a Kolab Groupware object. To view this object you will need an email client that understands the Kolab Groupware format. For a list of such email clients please visit http://www.kolab.org/content/kolab-clients",
             $driver->messages['INBOX'][0]
         );
-        $this->assertContains('User-Agent: Horde_Kolab_Storage ' . Horde_Kolab_Storage::VERSION, $driver->messages['INBOX'][0]);
-        $this->assertContains('Subject: UID', $driver->messages['INBOX'][0]);
-        $this->assertContains('From: user', $driver->messages['INBOX'][0]);
-        $this->assertContains('To: user', $driver->messages['INBOX'][0]);
-        $this->assertContains('X-Kolab-Type: application/x-vnd.kolab.event', $driver->messages['INBOX'][0]);
-        $this->assertContains('Content-Type: application/x-vnd.kolab.event; name=kolab.xml', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('User-Agent: Horde_Kolab_Storage ' . Horde_Kolab_Storage::VERSION, $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('Subject: UID', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('From: user', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('To: user', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('X-Kolab-Type: application/x-vnd.kolab.event', $driver->messages['INBOX'][0]);
+        $this->assertStringContainsString('Content-Type: application/x-vnd.kolab.event; name=kolab.xml', $driver->messages['INBOX'][0]);
         $this->assertEquals(
             array(
                 0 => 'multipart/mixed',
@@ -595,18 +589,18 @@ extends PHPUnit_Framework_TestCase
 
     public function testSavedBackendId()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('appendMessage')
             ->will($this->returnValue(1001));
         $driver->expects($this->once())
             ->method('fetchHeaders')
             ->with('INBOX', 1001);
-        $folder = $this->getMock('Horde_Kolab_Storage_Folder');
+        $folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->getMock();
         $folder->expects($this->once())
             ->method('getPath')
             ->will($this->returnValue('INBOX'));
-        $writer = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $writer = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $object->setData(array('uid' => 'UID'));
         $object->setDriver($driver);
@@ -614,20 +608,19 @@ extends PHPUnit_Framework_TestCase
         $object->getHeaders();
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Object_Exception
-     */
     public function testDriverException()
     {
-        $driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $this->expectException('Horde_Kolab_Storage_Object_Exception');
+
+        $driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $driver->expects($this->once())
             ->method('appendMessage')
             ->will($this->returnValue(false));
-        $folder = $this->getMock('Horde_Kolab_Storage_Folder');
+        $folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->getMock();
         $folder->expects($this->once())
             ->method('getPath')
             ->will($this->returnValue('INBOX'));
-        $writer = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $writer = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $object = new Horde_Kolab_Storage_Object();
         $object->setData(array('uid' => 'UID'));
         $object->setDriver($driver);
@@ -637,7 +630,7 @@ extends PHPUnit_Framework_TestCase
     public function testGetUid()
     {
         $object = new Horde_Kolab_Storage_Object();
-        $this->assertInternalType('string', $object->getUid());
+        $this->assertIsString($object->getUid());
     }
 
     public function testNewUid()
@@ -657,7 +650,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testSave()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $this->driver->expects($this->once())
             ->method('fetchComplete')
             ->will(
@@ -692,12 +685,11 @@ extends PHPUnit_Framework_TestCase
         $object->save($data);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Object_Exception
-     */
     public function testSaveException()
     {
-        $data = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $this->expectException('Horde_Kolab_Storage_Object_Exception');
+
+        $data = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $this->driver->expects($this->once())
             ->method('fetchComplete')
             ->will(
@@ -731,11 +723,11 @@ extends PHPUnit_Framework_TestCase
     public function testKolabPart()
     {
         $driver = new Horde_Kolab_Storage_Stub_Driver('user');
-        $folder = $this->getMock('Horde_Kolab_Storage_Folder');
+        $folder = $this->getMockBuilder('Horde_Kolab_Storage_Folder')->getMock();
         $folder->expects($this->once())
             ->method('getPath')
             ->will($this->returnValue('INBOX'));
-        $writer = $this->getMock('Horde_Kolab_Storage_Object_Writer');
+        $writer = $this->getMockBuilder('Horde_Kolab_Storage_Object_Writer')->getMock();
         $writer->expects($this->once())
             ->method('save')
             ->will($this->returnValue('<content/>'));

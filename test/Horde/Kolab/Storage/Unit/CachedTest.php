@@ -30,6 +30,8 @@ extends Horde_Kolab_Storage_TestCase
 {
     public function testConstruction()
     {
+        $this->expectNotToPerformAssertions();
+
         $this->createCachedStorage();
     }
 

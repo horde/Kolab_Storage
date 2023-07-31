@@ -24,7 +24,7 @@
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Query_Acl_BaseTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testHasAclSupport()
     {
@@ -158,11 +158,10 @@ extends PHPUnit_Framework_TestCase
         $acl->setAcl('INBOX', 'user', 'lra');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testSetAclWithNoAclSupport()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $acl = $this->_getAcl(false);
         $acl->setAcl('INBOX', 'user', 'lra');
     }
@@ -176,18 +175,17 @@ extends PHPUnit_Framework_TestCase
         $acl->deleteAcl('INBOX', 'user');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Storage_Exception
-     */
     public function testDeleteAclWithNoAclSupport()
     {
+        $this->expectException('Horde_Kolab_Storage_Exception');
+
         $acl = $this->_getAcl(false);
         $acl->deleteAcl('INBOX', 'user');
     }
 
     private function _getAcl($has_support = true)
     {
-        $this->driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $this->driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         $this->driver->expects($this->any())
             ->method('hasAclSupport')
             ->will($this->returnValue($has_support));

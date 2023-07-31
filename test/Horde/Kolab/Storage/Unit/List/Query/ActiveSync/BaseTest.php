@@ -24,7 +24,7 @@
  * @license  http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_List_Query_Activesync_BaseTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testGetEmptyActiveSync()
     {
@@ -77,7 +77,7 @@ extends PHPUnit_Framework_TestCase
 
     private function _getActivesync()
     {
-        $this->driver = $this->getMock('Horde_Kolab_Storage_Driver');
+        $this->driver = $this->getMockBuilder('Horde_Kolab_Storage_Driver')->getMock();
         return new Horde_Kolab_Storage_List_Query_ActiveSync_Base(
             $this->driver
         );

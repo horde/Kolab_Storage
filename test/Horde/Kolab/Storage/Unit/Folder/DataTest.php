@@ -26,7 +26,7 @@
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
 class Horde_Kolab_Storage_Unit_Folder_DataTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testType()
     {
@@ -84,15 +84,15 @@ extends PHPUnit_Framework_TestCase
 
     private function _getData()
     {
-        $type = $this->getMock('Horde_Kolab_Storage_Folder_Type', array(), array('a'));
+        $type = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Type')->setConstructorArgs(array('a'))->getMock();
         $type->expects($this->once())
             ->method('getType')
             ->will($this->returnValue('test'));
         $type->expects($this->once())
             ->method('isDefault')
             ->will($this->returnValue(true));
-        $ns = $this->getMock('Horde_Kolab_Storage_Folder_Namespace_Element', array(), array('A', 'B', 'C'));
-        $namespace = $this->getMock('Horde_Kolab_Storage_Folder_Namespace', array(), array(array()));
+        $ns = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace_Element')->setConstructorArgs(array('A', 'B', 'C'))->getMock();
+        $namespace = $this->getMockBuilder('Horde_Kolab_Storage_Folder_Namespace')->setConstructorArgs(array(array()))->getMock();
         $namespace->expects($this->once())
             ->method('getOwner')
             ->with('INBOX/Test')

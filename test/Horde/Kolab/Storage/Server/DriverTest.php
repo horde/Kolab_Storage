@@ -25,14 +25,14 @@
  * @author     Gunnar Wrobel <wrobel@pardus.de>
  * @license    http://www.horde.org/licenses/lgpl21 LGPL 2.1
  */
-class Horde_Kolab_Storage_Server_DriverTest extends PHPUnit_Framework_TestCase
+class Horde_Kolab_Storage_Server_DriverTest extends Horde_Test_Case
 {
     const MOCK         = 'Mock';
     const CCLIENT      = 'Cclient';
     const PEAR         = 'Pear';
     const IMAP_SOCKET  = 'Imap_Socket';
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!isset($this->sharedFixture)) {
             $this->markTestSkipped('Testing of a running server skipped. No configuration fixture available.');
@@ -47,7 +47,7 @@ class Horde_Kolab_Storage_Server_DriverTest extends PHPUnit_Framework_TestCase
 
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         /** Reactivate strict reporting as we need to turn it off for PEAR-Net_IMAP */
         if (!empty($this->old_error_reporting)) {
