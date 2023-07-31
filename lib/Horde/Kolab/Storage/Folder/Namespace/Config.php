@@ -80,6 +80,10 @@ extends  Horde_Kolab_Storage_Folder_Namespace
     {
         return serialize(array($this->user, $this->configuration));
     }
+    public function __serialize(): array
+    {
+        return [$this->user, $this->configuration];
+    }
 
     /**
      * Reconstruct the object from serialized data.
@@ -89,6 +93,11 @@ extends  Horde_Kolab_Storage_Folder_Namespace
     public function unserialize($data)
     {
         list($this->user, $this->configuration) = @unserialize($data);
+        $this->initialize($this->_initializeData());
+    }
+    public function __unserialize(array $data): void
+    {
+        list($this->user, $this->configuration) = $data;
         $this->initialize($this->_initializeData());
     }
 }

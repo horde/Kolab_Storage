@@ -158,6 +158,10 @@ implements Horde_Kolab_Storage_Folder_Stamp
     {
         return serialize(array($this->_status, $this->_ids));
     }
+    public function __serialize(): array
+    {
+        return [$this->_status, $this->_ids];
+    }
 
     /**
      * Reconstruct the object from serialized data.
@@ -167,6 +171,10 @@ implements Horde_Kolab_Storage_Folder_Stamp
     public function unserialize($data)
     {
         list($this->_status, $this->_ids) = @unserialize($data);
+    }
+    public function __unserialize(array $data): void
+    {
+        list($this->_status, $this->_ids) = $data;
     }
 
     /**

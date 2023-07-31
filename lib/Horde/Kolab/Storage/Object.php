@@ -578,22 +578,25 @@ class Horde_Kolab_Storage_Object implements ArrayAccess, Serializable
     }
 
     /* ArrayAccess methods. */
-
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset): bool
     {
         return isset($this->_data[$offset]);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset): mixed
     {
         return isset($this->_data[$offset]) ? $this->_data[$offset] : '';
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value): void
     {
         $this->_data[$offset] = $value;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset): void
     {
         unset($this->_data[$offset]);
@@ -609,15 +612,20 @@ class Horde_Kolab_Storage_Object implements ArrayAccess, Serializable
     public function serialize()
     {
         return serialize(
-            array(
-                self::SERIALIZATION_DATA => $this->_data,
-                self::SERIALIZATION_ERRORS => $this->_errors,
-                self::SERIALIZATION_TYPE => $this->_type,
-                self::SERIALIZATION_FOLDER => $this->_folder,
-                self::SERIALIZATION_BACKENDID => $this->_backend_id,
-                self::SERIALIZATION_MIMEPARTID => $this->_mime_part_id,
-            )
+            $this->__serialize()
         );
+    }
+
+    public function __serialize(): array
+    {
+        return [
+            self::SERIALIZATION_DATA => $this->_data,
+            self::SERIALIZATION_ERRORS => $this->_errors,
+            self::SERIALIZATION_TYPE => $this->_type,
+            self::SERIALIZATION_FOLDER => $this->_folder,
+            self::SERIALIZATION_BACKENDID => $this->_backend_id,
+            self::SERIALIZATION_MIMEPARTID => $this->_mime_part_id,
+        ];
     }
 
     /**
@@ -633,6 +641,27 @@ class Horde_Kolab_Storage_Object implements ArrayAccess, Serializable
         if (!is_array($data)) {
             throw new Horde_Kolab_Storage_Object_Exception('Cache data invalid');
         }
+        if (isset($data[self::SERIALIZATION_DATA])) {
+            $this->_data = $data[self::SERIALIZATION_DATA];
+        }
+        if (isset($data[self::SERIALIZATION_ERRORS])) {
+            $this->_errors = $data[self::SERIALIZATION_ERRORS];
+        }
+        if (isset($data[self::SERIALIZATION_TYPE])) {
+            $this->_type = $data[self::SERIALIZATION_TYPE];
+        }
+        if (isset($data[self::SERIALIZATION_FOLDER])) {
+            $this->_folder = $data[self::SERIALIZATION_FOLDER];
+        }
+        if (isset($data[self::SERIALIZATION_BACKENDID])) {
+            $this->_backend_id = $data[self::SERIALIZATION_BACKENDID];
+        }
+        if (isset($data[self::SERIALIZATION_MIMEPARTID])) {
+            $this->_mime_part_id = $data[self::SERIALIZATION_MIMEPARTID];
+        }
+    }
+    public function __unserialize(array $data): void
+    {
         if (isset($data[self::SERIALIZATION_DATA])) {
             $this->_data = $data[self::SERIALIZATION_DATA];
         }

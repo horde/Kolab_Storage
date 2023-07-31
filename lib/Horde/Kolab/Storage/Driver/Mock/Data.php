@@ -126,6 +126,7 @@ implements ArrayAccess
      *
      * @return mixed The data value.
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset) : mixed
     {
         return $this->_data[$offset];
@@ -135,10 +136,11 @@ implements ArrayAccess
      * Sets the value of the given offset in this array.
      *
      * @param string|int $offset The array offset.
-     * @param mi $offset The array offset.
+     * @param mixed $offset The array offset.
      *
-     * @return NULL
+     * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value) : void
     {
         $this->_data[$offset] = $value;
@@ -149,7 +151,7 @@ implements ArrayAccess
      *
      * @param string|int $offset The array offset.
      *
-     * @return boolean True if the offset exists.
+     * @return bool True if the offset exists.
      */
     public function offsetExists($offset) : bool
     {
@@ -161,7 +163,6 @@ implements ArrayAccess
      *
      * @param string|int $offset The array offset.
      *
-     * @return NULL
      */
     public function offsetUnset($offset) : void
     {
@@ -173,6 +174,7 @@ implements ArrayAccess
      *
      * @return array The keys of this array.
      */
+    #[ReturnTypeWillChange]
     public function arrayKeys()
     {
         return array_keys($this->_data);
