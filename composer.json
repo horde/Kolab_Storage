@@ -19,32 +19,26 @@
     "version": "2.2.4",
     "time": "2019-11-03",
     "repositories": [
-        {
-            "type": "pear",
-            "url": "https://pear.horde.org"
-        }
     ],
     "require": {
         "php": "^5.3 || ^7",
-        "pear-pear.horde.org/Horde_Cache": "^2",
-        "pear-pear.horde.org/Horde_Exception": "^2",
-        "pear-pear.horde.org/Horde_Kolab_Format": "^2",
-        "pear-pear.horde.org/Horde_Mime": "^2",
-        "pear-pear.horde.org/Horde_Translation": "^2.2",
-        "pear-pear.horde.org/Horde_Support": "^2",
-        "pear-pear.horde.org/Horde_Util": "^2"
+        "horde/cache": "^2",
+        "horde/exception": "^2",
+        "horde/kolab_format": "^2",
+        "horde/mime": "^2",
+        "horde/translation": "^2.2",
+        "horde/support": "^2",
+        "horde/util": "^2"
     },
     "suggest": {
-        "pear-pear.horde.org/Horde_Imap_Client": "^2.14",
-        "pear-pear.horde.org/Horde_History": "^2",
-        "pear-pear.horde.org/Horde_Test": "^2.1",
-        "pear-pear.php.net/HTTP_Request": "*",
-        "pear-pear.php.net/Net_IMAP": "^1.1",
+        "horde/imap_client": "^2.14",
+        "horde/history": "^2",
+        "horde/test": "^2.1",
+        "pear/http_request": "*",
+        "pear/net_imap": "^1.1",
         "ext-imap": "*"
     },
     "replace": {
-        "pear-pear.horde.org/Horde_Kolab_Storage": "2.*",
-        "pear-horde/Horde_Kolab_Storage": "2.*"
     },
     "autoload": {
         "psr-0": {
