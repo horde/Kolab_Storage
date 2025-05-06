@@ -74,8 +74,8 @@ class DriverTest extends TestCase
     private function _getDriver($driver)
     {
         if ($driver == self::PEAR) {
-            /** PEAR-Net_IMAP is not E_STRICT */
-            $this->old_error_reporting = error_reporting(E_ALL & ~E_STRICT);
+            // PEAR NET_IM
+            $this->old_error_reporting = error_reporting(E_ALL);
         }
         if (!isset($this->sharedFixture->drivers[$driver])) {
             switch ($driver) {
