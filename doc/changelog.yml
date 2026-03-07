@@ -1,4 +1,67 @@
 ---
+2.2.5:
+  api: 2.2.5
+  state:
+    release: stable
+    api: stable
+  date: 2026-03-07
+  license:
+    identifier: LGPL-2.1-only
+    uri: https://spdx.org/licenses/LGPL-2.1-only.html
+  notes: |-
+    fix: E_STRICT is deprecated in PHP 8.4
+    Upgrade unit tests and metadata for PHPUnit 9.5 under PHP 8.1+
+    Update metadata and workflows for PHP 8 support
+    Add CI job for satis repo update
+    Add warning against using this master branch for patches
+    Regenerate composer.json
+    Merge pull request #2 from maintaina-com/backport-upstream-php81
+    Avoid log spam in PHP 8.1+
+    Update supported PHP versions and configuration names.
+    [mjr] PHP 7.4 compatibility fixes (Remi Collet <remi@famillecollet.com>, PR #1).
+    Merge pull request #1 from remicollet/issue-php74
+    fix Passing glue string after array is deprecated.
+    Standardize descriptions.
+    Add chomp character.
+    Enable PHP 7.3 CI.
+    Net_IMAP raises deprecation warnings on PHP 7.2+.
+    Fix fixtures.
+    Fix tests to work with installed Horde_Kolab_Format too.
+    Replacement task got lost.
+    Update package definitions.
+    Set more developers inactive.
+    Update package definitions.
+    Fix getting exit code on PHP 7.2+.
+    package.xml must not contain empty <notes> tags.
+    Create CHANGES for all components.
+    Regenerate package.xml from changelog.yml.
+    Build changelog.yml from existing changelog(s).
+    Update .horde.yml with extended information.
+    Update composer.json.
+    Enable 7.2 builds.
+    PEAR on 5.6 and 7.0 is fixed.
+    Update file list
+    Move phpunit configuration to base directory.
+    Indicate markup language.
+    Update references to COPYING files.
+    Use LICENSE consistently and move to base directory.
+    Stop flooding #horde channel.
+    Use https URLs.
+    Remove incorrect links.
+    Install all dependencies but PECL extensions.
+    Hopefully this finally fixes Travis builds now.
+    Always discover channel manually, due to Travis bug.
+    Fix Travis tests.
+    Add Travis configuration and .gitignore files.
+    Add type parameter to .horde.yml files.
+    Update composer information.
+    Updated composer definitions.
+    Rename horde.yml files.
+    phpdoc
+    Standardize library full names.
+    Generate horde.yml files for all components.
+    Happy New Year!
+    Development mode for Horde_Kolab_Storage-2.2.4
 2.2.4:
   api: 2.2.0
   state:
@@ -178,28 +241,6 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [jan] Update Japanese translation (Hiromi Kimura <hiromi@tac.tsukuba.ac.jp>).
-2.0.0:
-  api: 2.0.0
-  state:
-    release: stable
-    api: stable
-  date: 2012-10-30
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First stable release for Horde 5.
-2.0.0RC1:
-  api: 2.0.0
-  state:
-    release: beta
-    api: stable
-  date: 2012-10-26
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    [gwr] Corrected fix for modifying Kolab objects.
 2.0.0beta3:
   api: 2.0.0
   state:
@@ -248,6 +289,28 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     First alpha release for Horde 5.
+2.0.0RC1:
+  api: 2.0.0
+  state:
+    release: beta
+    api: stable
+  date: 2012-10-26
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    [gwr] Corrected fix for modifying Kolab objects.
+2.0.0:
+  api: 2.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-10-30
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First stable release for Horde 5.
 1.1.0:
   api: 1.1.0
   state:
@@ -268,17 +331,28 @@
     [gwr] Add support for deleting messages by backend UID.
     [jan] Update Spanish translation.
     [gwr] Add logging for data handlers.
-1.0.0:
+1.0.0beta1:
   api: 1.0.0
   state:
-    release: stable
-    api: stable
-  date: 2011-04-06
+    release: beta
+    api: beta
+  date: 2011-03-16
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
-    First stable release for Horde 4.
+    First beta release for Horde 4.
+1.0.0alpha1:
+  api: 1.0.0
+  state:
+    release: alpha
+    api: alpha
+  date: 2011-03-08
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First alpha release for Horde 4.
 1.0.0RC2:
   api: 1.0.0
   state:
@@ -304,28 +378,17 @@
     [gwr] Fix creating/modifying objects.
     [gwr] Deal with Kolab_Format parsing exceptions.
     [gwr] Throw an exception on a duplicate UID within one folder.
-1.0.0beta1:
+1.0.0:
   api: 1.0.0
   state:
-    release: beta
-    api: beta
-  date: 2011-03-16
+    release: stable
+    api: stable
+  date: 2011-04-06
   license:
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
-    First beta release for Horde 4.
-1.0.0alpha1:
-  api: 1.0.0
-  state:
-    release: alpha
-    api: alpha
-  date: 2011-03-08
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First alpha release for Horde 4.
+    First stable release for Horde 4.
 0.4.0:
   api: 0.1.0
   state:
