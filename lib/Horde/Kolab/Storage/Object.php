@@ -537,7 +537,6 @@ class Horde_Kolab_Storage_Object implements ArrayAccess, Serializable
     protected function createEnvelopeHeaders()
     {
         $headers = new Horde_Mime_Headers();
-        $headers->setEOL("\r\n");
         $headers->addHeader('From', $this->_getDriver()->getAuth());
         $headers->addHeader('To', $this->_getDriver()->getAuth());
         $headers->addHeader('Date', date('r'));
