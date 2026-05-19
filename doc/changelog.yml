@@ -1,4 +1,15 @@
 ---
+2.2.6-RC1:
+  api: 2.2.6-RC1
+  state:
+    release: RC
+    api: RC
+  date: 2026-05-19
+  license:
+    identifier: LGPL-2.1-only
+    uri: https://spdx.org/licenses/LGPL-2.1-only.html
+  notes: |-
+    fix: redundant call to deprecated method.
 2.2.5:
   api: 2.2.5
   state:
