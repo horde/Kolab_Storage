@@ -51,10 +51,12 @@ extends Horde_Kolab_Storage_Synchronization
      */
     public function synchronizeList(Horde_Kolab_Storage_List_Tools $list)
     {
+        $session = $GLOBALS['session'];
         $list_id = $list->getId();
-        if (empty($_SESSION['kolab_storage']['synchronization']['list'][$list_id])) {
+        $key = 'synchronization/list/' . $list_id;
+        if (empty($session->get('kolab_storage', $key))) {
             $list->getListSynchronization()->synchronize();
-            $_SESSION['kolab_storage']['synchronization']['list'][$list_id] = true;
+            $session->set('kolab_storage', $key, true);
         }
     }
 
