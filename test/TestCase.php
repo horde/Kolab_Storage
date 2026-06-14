@@ -49,12 +49,13 @@ extends PhpUnitTestCase
 {
     public function setUp(): void
     {
-        $_SESSION = array();
+        require_once dirname(__DIR__) . '/test/TestSession.php';
+        $GLOBALS['session'] = new Horde_Kolab_Storage_Test_Session();
     }
 
     public function tearDown(): void
     {
-        $_SESSION = array();
+        unset($GLOBALS['session']);
     }
 
     protected function completeFactory($factory = null)

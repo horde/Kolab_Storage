@@ -64,7 +64,7 @@ extends TestCase
             ->method('getListSynchronization')
             ->will($this->returnValue($this->createMock(Horde_Kolab_Storage_List_Synchronization::class)));
         $synchronization->synchronizeList($list);
-        $this->assertTrue($_SESSION['kolab_storage']['synchronization']['list']['test']);
+        $this->assertTrue($GLOBALS['session']->get('kolab_storage', 'synchronization/list/test'));
     }
 
     public function testDuplicateListSynchronization()
@@ -105,7 +105,7 @@ extends TestCase
             ->method('getId')
             ->will($this->returnValue('test'));
         $synchronization->synchronizeData($data);
-        $this->assertTrue($_SESSION['kolab_storage']['synchronization']['data']['test']);
+        $this->assertTrue($GLOBALS['session']->get('kolab_storage', 'synchronization/data/test'));
     }
 
     public function testDuplicateDataSynchronization()
